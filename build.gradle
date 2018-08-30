@@ -10,8 +10,8 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.61")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:1.2.61")
     }
 }
 
@@ -24,6 +24,14 @@ apply plugin: 'io.spring.dependency-management'
 group = 'moe.tristan'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+mainClassName = "moe.tristan.kitsumonogatari.KitsumonogatariApplication"
+
+sourceSets {
+    main {
+        resources.srcDirs = [ "src/main/tesources", "src/main/kotlin"]
+    }
+}
+
 compileKotlin {
     kotlinOptions {
         freeCompilerArgs = ["-Xjsr305=strict"]
@@ -52,6 +60,7 @@ dependencies {
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compile("org.jetbrains.kotlin:kotlin-reflect")
+    compile("moe.tristan:easyfxml:1.1.8")
     runtime('com.h2database:h2')
     compileOnly('org.springframework.boot:spring-boot-configuration-processor')
     testCompile('org.springframework.boot:spring-boot-starter-test')

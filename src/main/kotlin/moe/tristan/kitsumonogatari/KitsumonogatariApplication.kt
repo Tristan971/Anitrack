@@ -1,11 +1,22 @@
 package moe.tristan.kitsumonogatari
 
+import moe.tristan.easyfxml.spring.application.FxSpringApplication
+import moe.tristan.easyfxml.spring.application.FxSpringContext
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
+import org.springframework.cache.annotation.EnableCaching
+import org.springframework.context.annotation.Import
+import java.awt.Toolkit
 
 @SpringBootApplication
-class KitsumonogatariApplication
+@EnableCaching
+@Import(FxSpringContext::class)
+class KitsumonogatariApplication: FxSpringApplication() {
 
-fun main(args: Array<String>) {
-    runApplication<KitsumonogatariApplication>(*args)
+    companion object {
+        fun main(args: Array<String>) {
+            Toolkit.getDefaultToolkit()
+            launch(KitsumonogatariApplication::class.java)
+        }
+    }
+
 }
