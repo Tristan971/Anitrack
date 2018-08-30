@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 buildscript {
     ext {
         kotlinVersion = '1.2.60'
@@ -24,13 +26,6 @@ apply plugin: 'io.spring.dependency-management'
 group = 'moe.tristan'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
-mainClassName = "moe.tristan.kitsumonogatari.KitsumonogatariApplication"
-
-sourceSets {
-    main {
-        resources.srcDirs = [ "src/main/tesources", "src/main/kotlin"]
-    }
-}
 
 compileKotlin {
     kotlinOptions {
@@ -64,4 +59,20 @@ dependencies {
     runtime('com.h2database:h2')
     compileOnly('org.springframework.boot:spring-boot-configuration-processor')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+processResources {
+    with copySpec {
+        from 'src/main/resources'
+        include '**/application*.yml'
+        include '**/application*.yaml'
+        include '**/application*.properties'
+        project.properties.findAll().each {
+            prop ->
+                if (prop.value != null) {
+                    filter(ReplaceTokens, tokens: [ (prop.key): prop.value])
+                    filter(ReplaceTokens, tokens: [ ('project.' + ((String) prop.key)): prop.value])
+                }
+        }
+    }
 }

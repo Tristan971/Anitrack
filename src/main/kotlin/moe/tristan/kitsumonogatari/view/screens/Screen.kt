@@ -13,7 +13,7 @@ enum class Screen(
     ROOT("root/Root.fxml", Root::class.java);
 
     companion object {
-        const val FXML_VIEWS_ROOT: String = "moe/tristan/kitsumonogatari/view/screens/"
+        const val FXML_VIEWS_ROOT: String = "fxml/screens/"
     }
 
     override fun getFile(): FxmlFile {
