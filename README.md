@@ -16,3 +16,4 @@ Track your anime viewings automatically and update your
     - [ ] MPV (lua play script)
     - [ ] CCCP & other MPC-HC derivatives (?)
     - [ ] VLC (won't do it myself, it's shit & you should not use it)
+- [ ] Make wale
