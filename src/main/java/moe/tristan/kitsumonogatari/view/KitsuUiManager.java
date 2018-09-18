@@ -19,12 +19,16 @@ public class KitsuUiManager extends FxUiManager {
 
     @Override
     protected String title() {
-        return environment.getProperty("app.title");
+        return String.format(
+                "%s %s",
+                environment.getProperty("app.title"),
+                environment.getProperty("app.version")
+        );
     }
 
     @Override
     protected FxmlNode mainComponent() {
-        return null;
+        return Components.ROOT;
     }
 
 }
