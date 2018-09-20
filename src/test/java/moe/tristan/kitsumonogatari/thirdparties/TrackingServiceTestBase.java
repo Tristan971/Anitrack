@@ -30,7 +30,7 @@ public abstract class TrackingServiceTestBase {
     @Autowired
     private ApplicationContext context;
 
-    private TrackingService sut;
+    private TrackingService<Media> sut;
 
     protected TrackingServiceTestBase(Class<? extends TrackingService> trackingApiClass) {
         this.trackingApiClass = trackingApiClass;
@@ -38,6 +38,7 @@ public abstract class TrackingServiceTestBase {
 
     @PostConstruct
     public void setupApi() {
+        //noinspection unchecked
         sut = context.getBean(trackingApiClass);
     }
 
