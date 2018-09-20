@@ -12,7 +12,7 @@ public class Kitsu implements TrackingService {
 
     @Override
     public Try<Media> searchMedia(String title) {
-        return null;
+        return Try.failure(new IllegalArgumentException());
     }
 
 }
