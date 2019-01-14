@@ -1,4 +1,4 @@
-package moe.tristan.kitsumonogatari.listen.objects;
+package moe.tristan.kitsumonogatari.listen;
 
 import org.immutables.value.Value.Immutable;
 
@@ -9,8 +9,6 @@ import moe.tristan.kitsumonogatari.util.ApiStyle;
 public interface PlayedElementData {
 
     String getName();
-
-    NameStyle getNameStyle();
 
     String getPlayer();
 

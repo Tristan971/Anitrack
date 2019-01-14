@@ -1,4 +1,4 @@
-package moe.tristan.kitsumonogatari.thirdparties;
+package moe.tristan.kitsumonogatari.model.thirdparties;
 
 import java.io.IOException;
 
@@ -17,11 +17,11 @@ public class ThirdpartyRequestsInterceptor implements ClientHttpRequestIntercept
 
     @Override
     public ClientHttpResponse intercept(
-            HttpRequest request,
-            byte[] body,
-            ClientHttpRequestExecution execution
+            final HttpRequest request,
+            final byte[] body,
+            final ClientHttpRequestExecution execution
     ) throws IOException {
-        LOGGER.debug("[{}] : {}", request.getMethod(), request.getURI());
+        LOGGER.debug("[{}] {}", request.getMethod(), request.getURI());
         return execution.execute(request, body);
     }
 

@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import moe.tristan.kitsumonogatari.listen.objects.PlayedElementData;
-
 @RestController
 @RequestMapping("player")
 public class PlayerController {
@@ -16,7 +14,7 @@ public class PlayerController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlayerController.class);
 
     @PostMapping("/played")
-    public void pushPlayedFile(@RequestBody final PlayedElementData playedElementData) {
+    public void played(@RequestBody final PlayedElementData playedElementData) {
         LOGGER.info("Got play notification : {}", playedElementData);
     }
 
