@@ -4,8 +4,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import moe.tristan.easyfxml.EasyFxml;
+import moe.tristan.easyfxml.FxUiManager;
 import moe.tristan.easyfxml.api.FxmlNode;
-import moe.tristan.easyfxml.spring.application.FxUiManager;
 
 @Component
 public class KitsuUiManager extends FxUiManager {

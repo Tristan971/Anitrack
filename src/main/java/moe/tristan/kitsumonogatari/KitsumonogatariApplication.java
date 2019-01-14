@@ -3,12 +3,13 @@ package moe.tristan.kitsumonogatari;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-import moe.tristan.easyfxml.spring.application.FxSpringApplication;
-import moe.tristan.easyfxml.spring.application.FxSpringContext;
+import moe.tristan.easyfxml.EasyFxmlAutoConfiguration;
+import moe.tristan.easyfxml.FxApplication;
+
 
 @SpringBootApplication
-@Import(FxSpringContext.class)
-public class KitsumonogatariApplication extends FxSpringApplication {
+@Import(EasyFxmlAutoConfiguration.class)
+public class KitsumonogatariApplication extends FxApplication {
 
     public static void main(String[] args) {
         launch(args);
