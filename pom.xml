@@ -33,6 +33,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <dependency>
+                            <groupId>org.immutables</groupId>
+                            <artifactId>value</artifactId>
+                            <version>2.7.4</version>
+                        </dependency>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
         </plugins>
 
@@ -84,36 +93,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>${openjfx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${openjfx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${openjfx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-media</artifactId>
-            <version>${openjfx.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>moe.tristan</groupId>
             <artifactId>easyfxml</artifactId>
-            <version>2.1.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>2.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.immutables</groupId>

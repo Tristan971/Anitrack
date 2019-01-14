@@ -1,6 +1,7 @@
 open module kitsumonogatari {
     requires slf4j.api;
 
+    requires spring.boot;
     requires spring.boot.autoconfigure;
     requires spring.context;
     requires spring.core;
@@ -10,10 +11,13 @@ open module kitsumonogatari {
     requires javafx.controls;
     requires javafx.fxml;
 
+    requires java.compiler;
     requires java.sql;
 
     requires easyfxml;
 
-    requires org.immutables.value;
+    requires jackson.annotations;
     requires com.fasterxml.jackson.databind;
+
+    requires org.immutables.value;
 }

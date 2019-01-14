@@ -9,7 +9,6 @@ public class Root implements FxmlController {
 
     @Override
     public void initialize() {
-
     }
 
 }
