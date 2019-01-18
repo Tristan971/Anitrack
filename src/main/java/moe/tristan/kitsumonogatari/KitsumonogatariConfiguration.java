@@ -9,11 +9,4 @@ import moe.tristan.kitsumonogatari.model.thirdparties.ThirdpartyRequestsIntercep
 @Configuration
 public class KitsumonogatariConfiguration {
 
-    @Bean
-    public RestTemplate restTemplate(final ThirdpartyRequestsInterceptor thirdpartyRequestsInterceptor) {
-        final RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getInterceptors().add(thirdpartyRequestsInterceptor);
-        return restTemplate;
-    }
-
 }

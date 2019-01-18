@@ -20,4 +20,5 @@ open module kitsumonogatari {
     requires com.fasterxml.jackson.databind;
 
     requires org.immutables.value;
+    requires spring.beans;
 }
