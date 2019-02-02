@@ -5,11 +5,12 @@ import java.util.Optional;
 import org.immutables.value.Value.Immutable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import moe.tristan.kitsumonogatari.util.ApiStyle;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Immutable
-@ApiStyle
+@JsonSerialize(as = ImmutableTitles.class)
+@JsonDeserialize(as = ImmutableTitles.class)
 public interface Titles {
 
     @JsonProperty("en")

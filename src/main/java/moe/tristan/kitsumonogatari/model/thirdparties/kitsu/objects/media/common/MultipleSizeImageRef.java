@@ -5,10 +5,12 @@ import java.util.Optional;
 
 import org.immutables.value.Value.Immutable;
 
-import moe.tristan.kitsumonogatari.util.ApiStyle;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Immutable
-@ApiStyle
+@JsonSerialize(as = ImmutableMultipleSizeImageRef.class)
+@JsonDeserialize(as = ImmutableMultipleSizeImageRef.class)
 public interface MultipleSizeImageRef {
 
     Optional<String> getTiny();
@@ -24,3 +26,4 @@ public interface MultipleSizeImageRef {
     Map<String, String> getMeta();
 
 }
+

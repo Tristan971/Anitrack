@@ -9,10 +9,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import moe.tristan.kitsumonogatari.model.thirdparties.kitsu.objects.media.common.CreatedAndUpdated;
 import moe.tristan.kitsumonogatari.model.thirdparties.kitsu.objects.media.common.Titles;
-import moe.tristan.kitsumonogatari.util.ApiStyle;
 
 @Immutable
-@ApiStyle
 @JsonSerialize(as = ImmutableEpisode.class)
 @JsonDeserialize(as = ImmutableEpisode.class)
 public interface Episode extends CreatedAndUpdated {

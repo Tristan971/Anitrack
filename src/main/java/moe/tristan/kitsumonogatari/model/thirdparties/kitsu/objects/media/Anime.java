@@ -13,10 +13,8 @@ import moe.tristan.kitsumonogatari.model.thirdparties.kitsu.objects.media.common
 import moe.tristan.kitsumonogatari.model.thirdparties.kitsu.objects.media.common.ScreeningStatus;
 import moe.tristan.kitsumonogatari.model.thirdparties.kitsu.objects.media.common.SubType;
 import moe.tristan.kitsumonogatari.model.thirdparties.kitsu.objects.media.common.Titles;
-import moe.tristan.kitsumonogatari.util.ApiStyle;
 
 @Immutable
-@ApiStyle
 public interface Anime extends CreatedAndUpdated {
 
     String getSlug();
