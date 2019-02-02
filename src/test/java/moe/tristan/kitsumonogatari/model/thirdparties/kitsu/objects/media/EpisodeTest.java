@@ -2,43 +2,38 @@ package moe.tristan.kitsumonogatari.model.thirdparties.kitsu.objects.media;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.net.URI;
-
-import org.springframework.core.ParameterizedTypeReference;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
 
-import moe.tristan.kitsumonogatari.model.thirdparties.ApiTest;
-import moe.tristan.kitsumonogatari.model.thirdparties.kitsu.ImmutableKitsuHateoasReply;
-import moe.tristan.kitsumonogatari.model.thirdparties.kitsu.KitsuHateoasReply;
+@SpringBootTest
+@RunWith(SpringRunner.class)
+public class EpisodeTest {
 
-@SuppressWarnings("unchecked")
-public class EpisodeTest extends ApiTest<KitsuHateoasReply<Episode>> {
+    private static final String TEST_EPISODE_URL = "https://kitsu.io/api/edge/episodes/31";
 
-    @Override
-    public ParameterizedTypeReference<ImmutableKitsuHateoasReply<ImmutableEpisode>> getApiType() {
-        return new ParameterizedTypeReference<>() {
-        };
-    }
+    @Autowired
+    @Qualifier("kitsu")
+    private RestTemplate restTemplate;
 
-    @Override
-    public RequestEntity<KitsuHateoasReply<Episode>> getRequestEntity() {
-        return new RequestEntity<>(HttpMethod.GET, URI.create("https://kitsu.io/api/edge/episodes/31"));
-    }
+    @Test
+    public void deserializesProperly() {
+        final ResponseEntity<ImmutableEpisode> response = restTemplate.exchange(
+                TEST_EPISODE_URL,
+                HttpMethod.GET,
+                null,
+                ImmutableEpisode.class
+        );
+        assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
 
-    @Override
-    public void testMatches() {
-        final ResponseEntity<KitsuHateoasReply<Episode>> apiEpisode = fetchInstance();
-        assertThat(apiEpisode.getStatusCode().is2xxSuccessful()).isTrue();
-
-        final Episode episode = apiEpisode.getBody().getElement();
-        logger().info("Response was : ", episode);
-    }
-
-    @Override
-    public String restTemplateQualifier() {
-        return "kitsu";
+        final Episode episode = response.getBody();
+        assertThat(episode).isNotNull();
     }
 
 }

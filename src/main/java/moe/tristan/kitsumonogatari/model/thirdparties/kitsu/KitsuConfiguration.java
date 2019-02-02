@@ -22,10 +22,11 @@ public class KitsuConfiguration {
 
     @Qualifier("kitsu")
     @Bean
-    public RestTemplate kitsuRestTemplate(final Supplier<RestTemplate> baseRestTemplate) {
+    public RestTemplate kitsuRestTemplate(final Supplier<RestTemplate> baseRestTemplate, final KitsuApiHateoasInterceptor hateoasInterceptor) {
         LOGGER.info("Creating Kitsu-specific Content-Type/Accept headers interceptor.");
         final RestTemplate restTemplate = baseRestTemplate.get();
         restTemplate.getInterceptors().add(headerInterceptor);
+        restTemplate.getInterceptors().add(hateoasInterceptor);
         return restTemplate;
     }
 
