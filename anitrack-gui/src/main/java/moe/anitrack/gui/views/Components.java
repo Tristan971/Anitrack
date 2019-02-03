@@ -1,9 +1,9 @@
 package moe.anitrack.gui.views;
 
+import moe.anitrack.gui.views.root.Root;
 import moe.tristan.easyfxml.api.FxmlController;
 import moe.tristan.easyfxml.api.FxmlFile;
 import moe.tristan.easyfxml.api.FxmlNode;
-import moe.anitrack.gui.views.root.Root;
 
 public enum Components implements FxmlNode {
     ROOT("root/Root.fxml", Root.class);
