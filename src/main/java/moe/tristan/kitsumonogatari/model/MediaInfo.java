@@ -3,8 +3,12 @@ package moe.tristan.kitsumonogatari.model;
 import org.immutables.value.Value.Immutable;
 
 @Immutable
-public interface Media {
+public interface MediaInfo {
 
-    String getUuid();
+    String getName();
+
+    String getFileName();
+
+    int getUserScore();
 
 }
