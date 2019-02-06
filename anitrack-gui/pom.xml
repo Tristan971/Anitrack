@@ -11,6 +11,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <name>Anitrack Notifier UI</name>
     <artifactId>anitrack-gui</artifactId>
 
     <build>
@@ -45,12 +46,7 @@
     <dependencies>
         <dependency>
             <groupId>moe.anitrack</groupId>
-            <artifactId>anitrack-thirdparties</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>moe.anitrack</groupId>
-            <artifactId>anitrack-listener</artifactId>
+            <artifactId>anitrack-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
@@ -68,6 +64,35 @@
         <dependency>
             <groupId>org.immutables</groupId>
             <artifactId>value</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.skyscreamer</groupId>
+                    <artifactId>jsonassert</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

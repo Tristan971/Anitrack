@@ -12,11 +12,11 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan("moe.anitrack.thirdparties")
-public class ThirdpartyConfiguration {
+public class ThirdpartiesConfiguration {
 
     private final ThirdpartyRequestsInterceptor thirdpartyRequestsInterceptor;
 
-    public ThirdpartyConfiguration(ThirdpartyRequestsInterceptor thirdpartyRequestsInterceptor) {
+    public ThirdpartiesConfiguration(ThirdpartyRequestsInterceptor thirdpartyRequestsInterceptor) {
         this.thirdpartyRequestsInterceptor = thirdpartyRequestsInterceptor;
     }
 

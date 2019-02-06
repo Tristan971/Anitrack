@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <name>${project.artifactId}</name>
+    <name>Anitrack Parent</name>
     <description>Track animes you watch</description>
     <url>https://tristan971.github.io/Anitrack/</url>
 
@@ -50,8 +50,9 @@
 
     <modules>
         <module>anitrack-gui</module>
-        <module>anitrack-listener</module>
+        <module>anitrack-server</module>
         <module>anitrack-thirdparties</module>
+        <module>anitrack-core</module>
     </modules>
 
     <build>

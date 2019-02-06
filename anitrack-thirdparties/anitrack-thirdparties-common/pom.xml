@@ -10,6 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <name>Anitrack Thirdparties Common Infrastructure</name>
     <artifactId>anitrack-thirdparties-common</artifactId>
 
     <dependencies>

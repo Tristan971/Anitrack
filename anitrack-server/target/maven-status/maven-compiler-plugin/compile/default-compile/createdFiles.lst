@@ -1,0 +1,11 @@
+moe\anitrack\server\ImmutablePlayedElementData.class
+moe\anitrack\server\ImmutableInfoData$Builder.class
+moe\anitrack\server\ListenerConfiguration.class
+module-info.class
+moe\anitrack\server\PlayerController.class
+moe\anitrack\server\ImmutablePlayedElementData$Json.class
+moe\anitrack\server\ImmutableInfoData$Json.class
+moe\anitrack\server\ImmutablePlayedElementData$Builder.class
+moe\anitrack\server\InfoData.class
+moe\anitrack\server\ImmutableInfoData.class
+moe\anitrack\server\PlayedElementData.class

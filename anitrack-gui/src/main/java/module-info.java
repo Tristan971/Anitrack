@@ -7,5 +7,6 @@ open module anitrack.gui {
 
     requires easyfxml;
 
-    requires anitrack.listener;
+    requires anitrack.server;
+    requires anitrack.core;
 }

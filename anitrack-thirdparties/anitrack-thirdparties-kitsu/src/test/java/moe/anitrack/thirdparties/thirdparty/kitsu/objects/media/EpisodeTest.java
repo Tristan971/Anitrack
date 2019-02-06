@@ -12,9 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import moe.anitrack.thirdparties.common.ThirdpartyConfiguration;
+import moe.anitrack.thirdparties.common.ThirdpartiesConfiguration;
 
-@ContextConfiguration(classes = ThirdpartyConfiguration.class)
+@ContextConfiguration(classes = ThirdpartiesConfiguration.class)
 @RunWith(SpringRunner.class)
 public class EpisodeTest {
 
