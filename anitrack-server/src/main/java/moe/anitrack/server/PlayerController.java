@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import moe.anitrack.server.reactive.PlayedMediaEventDispatcher;
+import moe.anitrack.server.objects.ImmutableInfoData;
+import moe.anitrack.server.objects.InfoData;
+import moe.anitrack.server.objects.PlayedMediaEvent;
+
 @RestController
 @RequestMapping(value = "player")
 public class PlayerController {
@@ -17,10 +22,12 @@ public class PlayerController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlayerController.class);
 
     private final Environment environment;
+    private final PlayedMediaEventDispatcher playedMediaEventDispatcher;
 
     @Autowired
-    public PlayerController(Environment environment) {
+    public PlayerController(Environment environment, PlayedMediaEventDispatcher playedMediaEventDispatcher) {
         this.environment = environment;
+        this.playedMediaEventDispatcher = playedMediaEventDispatcher;
     }
 
     @GetMapping("/info")
@@ -32,8 +39,9 @@ public class PlayerController {
     }
 
     @PostMapping("/played")
-    public void played(@RequestBody final PlayedElementData playedElementData) {
-        LOGGER.info("Got play notification : {}", playedElementData);
+    public void played(@RequestBody final PlayedMediaEvent playedMediaEvent) {
+        LOGGER.info("Got play notification : {}", playedMediaEvent);
+        playedMediaEventDispatcher.eventReceived(playedMediaEvent);
     }
 
 }

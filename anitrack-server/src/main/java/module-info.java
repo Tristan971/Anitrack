@@ -1,5 +1,4 @@
 open module anitrack.server {
-
     exports moe.anitrack.server;
 
     requires java.annotation;

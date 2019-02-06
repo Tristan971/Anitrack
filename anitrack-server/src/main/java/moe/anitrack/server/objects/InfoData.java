@@ -1,4 +1,4 @@
-package moe.anitrack.server;
+package moe.anitrack.server.objects;
 
 import org.immutables.value.Value.Immutable;
 

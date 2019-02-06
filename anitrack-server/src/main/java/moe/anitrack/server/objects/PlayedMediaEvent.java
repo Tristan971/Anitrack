@@ -1,4 +1,4 @@
-package moe.anitrack.server;
+package moe.anitrack.server.objects;
 
 import org.immutables.value.Value.Immutable;
 
@@ -6,9 +6,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Immutable
-@JsonSerialize(as = ImmutablePlayedElementData.class)
-@JsonDeserialize(as = ImmutablePlayedElementData.class)
-public interface PlayedElementData {
+@JsonSerialize(as = ImmutablePlayedMediaEvent.class)
+@JsonDeserialize(as = ImmutablePlayedMediaEvent.class)
+public interface PlayedMediaEvent {
 
     String getName();
 
