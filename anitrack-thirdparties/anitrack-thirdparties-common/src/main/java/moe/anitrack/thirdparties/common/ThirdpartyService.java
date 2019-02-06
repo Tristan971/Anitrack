@@ -1,6 +1,6 @@
-package moe.anitrack.thirdparties;
+package moe.anitrack.thirdparties.common;
 
-import moe.anitrack.thirdparties.common.MediaInfo;
+import moe.anitrack.thirdparties.common.objects.MediaInfo;
 
 public interface ThirdpartyService<T> {
 

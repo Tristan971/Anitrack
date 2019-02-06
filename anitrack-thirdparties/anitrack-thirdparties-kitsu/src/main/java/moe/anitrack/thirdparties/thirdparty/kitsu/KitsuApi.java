@@ -2,8 +2,8 @@ package moe.anitrack.thirdparties.thirdparty.kitsu;
 
 import org.springframework.stereotype.Component;
 
-import moe.anitrack.thirdparties.ThirdpartyService;
-import moe.anitrack.thirdparties.common.MediaInfo;
+import moe.anitrack.thirdparties.common.ThirdpartyService;
+import moe.anitrack.thirdparties.common.objects.MediaInfo;
 
 @Component
 public class KitsuApi implements ThirdpartyService<MediaInfo> {

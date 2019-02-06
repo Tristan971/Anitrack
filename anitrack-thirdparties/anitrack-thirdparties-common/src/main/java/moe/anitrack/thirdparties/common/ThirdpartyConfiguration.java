@@ -1,4 +1,4 @@
-package moe.anitrack.thirdparties;
+package moe.anitrack.thirdparties.common;
 
 import java.util.function.Supplier;
 

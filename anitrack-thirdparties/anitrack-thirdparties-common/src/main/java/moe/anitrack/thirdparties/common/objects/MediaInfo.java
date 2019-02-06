@@ -1,4 +1,4 @@
-package moe.anitrack.thirdparties.common;
+package moe.anitrack.thirdparties.common.objects;
 
 import org.immutables.value.Value.Immutable;
 

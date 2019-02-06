@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import moe.anitrack.thirdparties.ThirdpartyConfiguration;
+import moe.anitrack.thirdparties.common.ThirdpartyConfiguration;
 
 @ContextConfiguration(classes = ThirdpartyConfiguration.class)
 @RunWith(SpringRunner.class)
