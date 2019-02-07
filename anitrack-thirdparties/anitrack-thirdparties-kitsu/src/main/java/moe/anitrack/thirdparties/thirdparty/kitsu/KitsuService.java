@@ -13,13 +13,13 @@ public class KitsuService implements ThirdpartyService<MediaInfo> {
     private static final Logger LOGGER = LoggerFactory.getLogger(KitsuService.class);
 
     @Override
-    public void played(MediaInfo thirdpartyMediaInfo) {
-        LOGGER.info("Dispatching played media query to Kitsu: {}", thirdpartyMediaInfo);
+    public void played(MediaInfo mediaInfo) {
+        LOGGER.info("Dispatching played media query to Kitsu: {}", mediaInfo);
     }
 
     @Override
-    public MediaInfo mapCommonMediaInfoToThirdparty(MediaInfo commonMediaInfo) {
-        return commonMediaInfo;
+    public MediaInfo mapFromAnitrackMediaInfo(MediaInfo anitrackMediaInfo) {
+        return anitrackMediaInfo;
     }
 
 }

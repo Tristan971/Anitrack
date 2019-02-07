@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import moe.anitrack.server.reactive.PlayedMediaEventDispatcher;
 import moe.anitrack.server.objects.ImmutableInfoData;
 import moe.anitrack.server.objects.InfoData;
 import moe.anitrack.server.objects.PlayedMediaEvent;
+import moe.anitrack.server.reactive.PlayedMediaEventDispatcher;
 
 @RestController
 @RequestMapping(value = "player")

@@ -4,8 +4,8 @@ import moe.anitrack.thirdparties.common.objects.MediaInfo;
 
 public interface ThirdpartyService<T> {
 
-    void played(final T thirdpartyMediaInfo);
+    void played(final T mediaInfo);
 
-    T mapCommonMediaInfoToThirdparty(final MediaInfo commonMediaInfo);
+    T mapFromAnitrackMediaInfo(final MediaInfo anitrackMediaInfo);
 
 }
