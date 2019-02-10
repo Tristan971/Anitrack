@@ -31,7 +31,7 @@ public class KitsuApiHateoasInterceptor implements ClientHttpRequestInterceptor 
     public ClientHttpResponse intercept(final HttpRequest request, final byte[] body, final ClientHttpRequestExecution execution) throws IOException {
         final ClientHttpResponse response = execution.execute(request, body);
         final String unwrappedBody = unwrapResponseFromHateoas(response.getBody());
-        return responseCodyWithBody(response, unwrappedBody);
+        return copyOfResponseWithBody(response, unwrappedBody);
     }
 
     private String unwrapResponseFromHateoas(final InputStream originalResponsebody) throws IOException {
@@ -40,7 +40,7 @@ public class KitsuApiHateoasInterceptor implements ClientHttpRequestInterceptor 
         return objectMapper.writeValueAsString(actualElementTree);
     }
 
-    private ClientHttpResponse responseCodyWithBody(ClientHttpResponse response, String unwrappedBody) {
+    private ClientHttpResponse copyOfResponseWithBody(ClientHttpResponse response, String unwrappedBody) {
         return new ClientHttpResponse() {
             @Override
             public HttpStatus getStatusCode() throws IOException {
