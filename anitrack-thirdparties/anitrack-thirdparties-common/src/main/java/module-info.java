@@ -2,7 +2,7 @@ open module anitrack.thirdparties.common {
     exports moe.anitrack.thirdparties.common;
     exports moe.anitrack.thirdparties.common.model.authentication.pre;
     exports moe.anitrack.thirdparties.common.model.authentication.post;
-    exports moe.anitrack.thirdparties.common.model.input;
+    exports moe.anitrack.thirdparties.common.model.media;
 
     requires java.annotation;
 

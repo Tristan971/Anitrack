@@ -1,4 +1,4 @@
-package moe.anitrack.thirdparties.common.model.input;
+package moe.anitrack.thirdparties.common.model.media;
 
 import org.immutables.value.Value.Immutable;
 

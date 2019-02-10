@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
-import moe.anitrack.thirdparties.common.model.input.MediaInfo;
+import moe.anitrack.thirdparties.common.model.media.MediaInfo;
 
 @Component
 public class KitsuService implements ThirdpartyService<MediaInfo> {
