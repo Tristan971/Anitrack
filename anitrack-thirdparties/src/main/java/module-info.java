@@ -8,4 +8,5 @@ open module anitrack.thirdparties {
     requires spring.boot.autoconfigure;
     requires spring.web;
     requires java.annotation;
+    requires spring.beans;
 }
