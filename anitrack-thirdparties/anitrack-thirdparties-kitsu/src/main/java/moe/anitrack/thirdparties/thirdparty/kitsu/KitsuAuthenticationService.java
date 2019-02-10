@@ -10,6 +10,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -24,14 +25,23 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
+import moe.anitrack.thirdparties.common.model.authentication.post.AuthenticationResult;
+import moe.anitrack.thirdparties.common.model.authentication.post.ImmutableAuthenticationResult;
+import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.authentication.pre.ImmutableAuthenticationField;
+import moe.anitrack.thirdparties.common.model.authentication.pre.ImmutableRequiredAuthenticationInformation;
+import moe.anitrack.thirdparties.common.model.authentication.pre.RequiredAuthenticationInformation;
 import moe.anitrack.thirdparties.thirdparty.kitsu.objects.authentication.ImmutableOauthPasswordAuthenticationResponse;
 import moe.anitrack.thirdparties.thirdparty.kitsu.objects.authentication.OauthPasswordAuthenticationResponse;
 
 @Component
-public class KitsuAuthenticationService {
+public class KitsuAuthenticationService implements ThirdpartyAuthenticationService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KitsuAuthenticationService.class);
 
+    private static final String PASSWORD_FIELD = "Password";
+    private static final String EMAIL_FIELD = "E-mail address";
     private static final String OAUTH_ENDPOINT = "https://kitsu.io/api/oauth/token";
     private static final String OAUTH_BODY_TEMPLATE = "grant_type=password&username=%s&password=%s";
 
@@ -43,6 +53,38 @@ public class KitsuAuthenticationService {
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
         this.authentication = new AtomicReference<>();
+    }
+
+    @Override
+    public RequiredAuthenticationInformation getRequiredAuthenticationInformation() {
+        final AuthenticationField emailField = ImmutableAuthenticationField.builder().fieldName(EMAIL_FIELD).build();
+        final AuthenticationField passwordField = ImmutableAuthenticationField.builder().fieldName(PASSWORD_FIELD).isPasswordLike(true).build();
+
+        return ImmutableRequiredAuthenticationInformation
+                .builder()
+                .addRequiredFieldValues(emailField, passwordField)
+                .build();
+    }
+
+    @Override
+    public AuthenticationResult authenticateWith(Map<String, String> authenticationValues) {
+        final String email = authenticationValues.get(EMAIL_FIELD);
+        final String password = authenticationValues.get(PASSWORD_FIELD);
+        try {
+            authenticateWith(email, password);
+            return ImmutableAuthenticationResult
+                    .builder()
+                    .isSuccessful(true)
+                    .loggedInAs(email)
+                    .build();
+        } catch (IOException e) {
+            LOGGER.error("Could not log in!", e);
+            return ImmutableAuthenticationResult
+                    .builder()
+                    .isSuccessful(false)
+                    .error(e.getMessage())
+                    .build();
+        }
     }
 
     public void authenticateWith(final String username, final String password) throws IOException {
