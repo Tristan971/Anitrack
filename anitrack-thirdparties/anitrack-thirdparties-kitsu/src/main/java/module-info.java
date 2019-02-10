@@ -1,6 +1,8 @@
 open module anitrack.thirdparties.kitsu {
+
     exports moe.anitrack.thirdparties.thirdparty.kitsu;
     exports moe.anitrack.thirdparties.thirdparty.kitsu.objects.media;
+    exports moe.anitrack.thirdparties.thirdparty.kitsu.objects.authentication;
     exports moe.anitrack.thirdparties.thirdparty.kitsu.objects.media.common;
 
     requires anitrack.thirdparties.common;
@@ -11,7 +13,9 @@ open module anitrack.thirdparties.kitsu {
 
     requires com.fasterxml.jackson.databind;
     requires jackson.annotations;
+    requires java.annotation;
 
     requires org.immutables.value;
     requires slf4j.api;
+
 }
