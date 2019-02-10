@@ -8,6 +8,7 @@ open module anitrack.thirdparties.kitsu {
     requires anitrack.thirdparties.common;
 
     requires spring.context;
+    requires spring.core;
     requires spring.beans;
     requires spring.web;
 
@@ -17,6 +18,5 @@ open module anitrack.thirdparties.kitsu {
 
     requires org.immutables.value;
     requires slf4j.api;
-    requires spring.core;
 
 }
