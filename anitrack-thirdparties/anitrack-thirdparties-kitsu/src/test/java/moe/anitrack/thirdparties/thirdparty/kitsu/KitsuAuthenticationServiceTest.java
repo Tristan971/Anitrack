@@ -5,17 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.IOException;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import moe.anitrack.thirdparties.common.ThirdpartiesConfiguration;
-
-@ContextConfiguration(classes = ThirdpartiesConfiguration.class)
-@RunWith(SpringRunner.class)
-public class KitsuAuthenticationServiceTest {
+public class KitsuAuthenticationServiceTest extends BaseKitsuTest {
 
     @Autowired
     private KitsuAuthenticationService sut;
