@@ -1,12 +1,14 @@
 package moe.anitrack.gui.views;
 
+import moe.anitrack.gui.views.authentication.AuthenticationController;
 import moe.anitrack.gui.views.root.Root;
 import moe.tristan.easyfxml.api.FxmlController;
 import moe.tristan.easyfxml.api.FxmlFile;
 import moe.tristan.easyfxml.api.FxmlNode;
 
 public enum Components implements FxmlNode {
-    ROOT("root/Root.fxml", Root.class);
+    ROOT("root/Root.fxml", Root.class),
+    AUTHENTICATION_FORM("authentication/Authentication.fxml", AuthenticationController.class);
 
     private final String fxmlFilePath;
     private final Class<? extends FxmlController> controllerClass;

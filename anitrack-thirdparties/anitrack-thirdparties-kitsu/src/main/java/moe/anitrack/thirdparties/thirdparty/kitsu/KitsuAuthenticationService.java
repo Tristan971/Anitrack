@@ -10,6 +10,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -30,8 +31,6 @@ import moe.anitrack.thirdparties.common.model.authentication.post.Authentication
 import moe.anitrack.thirdparties.common.model.authentication.post.ImmutableAuthenticationResult;
 import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
 import moe.anitrack.thirdparties.common.model.authentication.pre.ImmutableAuthenticationField;
-import moe.anitrack.thirdparties.common.model.authentication.pre.ImmutableRequiredAuthenticationInformation;
-import moe.anitrack.thirdparties.common.model.authentication.pre.RequiredAuthenticationInformation;
 import moe.anitrack.thirdparties.thirdparty.kitsu.objects.authentication.ImmutableOauthPasswordAuthenticationResponse;
 import moe.anitrack.thirdparties.thirdparty.kitsu.objects.authentication.OauthPasswordAuthenticationResponse;
 
@@ -56,14 +55,11 @@ public class KitsuAuthenticationService implements ThirdpartyAuthenticationServi
     }
 
     @Override
-    public RequiredAuthenticationInformation getRequiredAuthenticationInformation() {
+    public List<AuthenticationField> getAuthenticationFields() {
         final AuthenticationField emailField = ImmutableAuthenticationField.builder().fieldName(EMAIL_FIELD).build();
         final AuthenticationField passwordField = ImmutableAuthenticationField.builder().fieldName(PASSWORD_FIELD).isPasswordLike(true).build();
 
-        return ImmutableRequiredAuthenticationInformation
-                .builder()
-                .addRequiredFieldValues(emailField, passwordField)
-                .build();
+        return List.of(emailField, passwordField);
     }
 
     @Override

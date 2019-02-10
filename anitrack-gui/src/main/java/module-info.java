@@ -9,4 +9,8 @@ open module anitrack.gui {
 
     requires anitrack.server;
     requires anitrack.core;
+    requires javafx.fxml;
+    requires javafx.graphics;
+    requires anitrack.thirdparties.common;
+    requires javafx.controls;
 }
