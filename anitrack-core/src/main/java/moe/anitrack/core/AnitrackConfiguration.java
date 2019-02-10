@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import moe.anitrack.server.ListenerConfiguration;
-import moe.anitrack.thirdparties.common.ThirdpartiesConfiguration;
+import moe.anitrack.thirdparties.ThirdpartiesConfiguration;
 
 @Configuration
 @ComponentScan("moe.anitrack.core")

@@ -3,20 +3,15 @@ package moe.anitrack.thirdparties.thirdparty.kitsu.objects.media;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import moe.anitrack.thirdparties.common.ThirdpartiesConfiguration;
+import moe.anitrack.thirdparties.thirdparty.kitsu.BaseKitsuTest;
 
-@ContextConfiguration(classes = ThirdpartiesConfiguration.class)
-@RunWith(SpringRunner.class)
-public class EpisodeTest {
+public class EpisodeTest extends BaseKitsuTest {
 
     private static final String TEST_EPISODE_URL = "https://kitsu.io/api/edge/episodes/31";
 

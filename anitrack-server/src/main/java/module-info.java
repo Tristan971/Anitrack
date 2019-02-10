@@ -5,6 +5,7 @@ open module anitrack.server {
     exports moe.anitrack.server.reactive.bindings;
 
     requires java.annotation;
+    requires java.sql;
 
     requires spring.beans;
     requires spring.core;

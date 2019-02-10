@@ -19,6 +19,7 @@ public class KitsuAuthorizationInterceptor implements ClientHttpRequestIntercept
     private static final Logger LOGGER = LoggerFactory.getLogger(KitsuAuthorizationInterceptor.class);
 
     private final KitsuAuthenticationService kitsuAuthenticationService;
+
     private final String clientId;
     private final String clientSecret;
 

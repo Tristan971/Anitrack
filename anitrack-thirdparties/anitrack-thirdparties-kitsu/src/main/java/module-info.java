@@ -18,5 +18,6 @@ open module anitrack.thirdparties.kitsu {
 
     requires org.immutables.value;
     requires slf4j.api;
+    requires spring.boot.autoconfigure;
 
 }
