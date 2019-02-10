@@ -9,6 +9,7 @@ open module anitrack.core {
     requires anitrack.thirdparties.kitsu;
     requires java.annotation;
     requires slf4j.api;
-    requires anitrack.thirdparties;
+    requires spring.beans;
+    requires spring.boot.autoconfigure;
 
 }

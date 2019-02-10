@@ -1,24 +1,17 @@
-package moe.anitrack.thirdparties;
+package moe.anitrack.thirdparties.common;
 
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.client.RestTemplate;
 
-import moe.anitrack.thirdparties.common.ThirdpartyRequestsInterceptor;
-import moe.anitrack.thirdparties.thirdparty.kitsu.KitsuConfiguration;
-
 @Configuration
-@EnableAutoConfiguration
 @ComponentScan("moe.anitrack.thirdparties.common")
-@Import(KitsuConfiguration.class)
-public class ThirdpartiesConfiguration {
+public class ThirdpartyBaseConfiguration {
 
     @Bean
     @Primary
