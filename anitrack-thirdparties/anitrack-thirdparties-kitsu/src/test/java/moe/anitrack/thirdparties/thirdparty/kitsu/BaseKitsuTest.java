@@ -13,6 +13,6 @@ import moe.anitrack.thirdparties.common.ThirdpartiesConfiguration;
 })
 @RunWith(SpringRunner.class)
 @TestPropertySource("classpath:private-kitsu.properties")
-public class BaseKitsuTest {
+public abstract class BaseKitsuTest {
 
 }
