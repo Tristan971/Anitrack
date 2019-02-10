@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.client.RestTemplate;
 
-@SuppressWarnings("Duplicates")
 @Configuration
 @PropertySource("classpath:kitsu.properties")
 public class KitsuConfiguration {

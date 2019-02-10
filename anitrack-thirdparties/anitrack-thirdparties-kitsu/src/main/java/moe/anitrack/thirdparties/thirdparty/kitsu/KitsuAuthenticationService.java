@@ -54,7 +54,7 @@ public class KitsuAuthenticationService {
         final String responseBody = responseEntity.getBody();
 
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
-            LOGGER.info("Authentication successful!\n{}", responseBody);
+            LOGGER.debug("Authentication Response : {}", responseBody);
             final OauthPasswordAuthenticationResponse authenticationResponse = objectMapper.readValue(
                     responseBody,
                     ImmutableOauthPasswordAuthenticationResponse.class
