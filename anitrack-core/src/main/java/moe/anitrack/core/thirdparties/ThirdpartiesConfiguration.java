@@ -9,17 +9,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import moe.anitrack.thirdparties.common.ThirdpartyBaseConfiguration;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
 import moe.anitrack.thirdparties.thirdparty.kitsu.KitsuConfiguration;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("moe.anitrack.thirdparties")
-@Import(KitsuConfiguration.class)
+@Import(value = {
+        ThirdpartyBaseConfiguration.class,
+        KitsuConfiguration.class
+})
 public class ThirdpartiesConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ThirdpartiesConfiguration.class);
