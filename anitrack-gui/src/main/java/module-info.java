@@ -13,4 +13,5 @@ open module anitrack.gui {
     requires javafx.graphics;
     requires anitrack.thirdparties.common;
     requires javafx.controls;
+    requires slf4j.api;
 }
