@@ -1,6 +1,7 @@
 package moe.anitrack.thirdparties.common;
 
 import moe.anitrack.thirdparties.common.model.media.MediaInfo;
+import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceChoiceInfo;
 
 public interface ThirdpartyService<T> {
 
@@ -9,5 +10,7 @@ public interface ThirdpartyService<T> {
     T mapFromAnitrackMediaInfo(final MediaInfo anitrackMediaInfo);
 
     ThirdpartyAuthenticationService getAuthenticationService();
+
+    ThirdpartyServiceChoiceInfo getChoiceInfo();
 
 }
