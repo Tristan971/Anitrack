@@ -1,5 +1,6 @@
 open module anitrack.core {
     exports moe.anitrack.core;
+    exports moe.anitrack.core.thirdparties;
 
     requires spring.context;
 

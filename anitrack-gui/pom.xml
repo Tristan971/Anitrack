@@ -53,7 +53,7 @@
         <dependency>
             <groupId>moe.tristan</groupId>
             <artifactId>easyfxml</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.4</version>
         </dependency>
 
         <dependency>
