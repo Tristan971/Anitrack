@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
 import moe.anitrack.thirdparties.common.ThirdpartyBaseConfiguration;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
@@ -24,6 +25,7 @@ import moe.anitrack.thirdparties.thirdparty.local.LocalThirdpartyConfiguration;
         KitsuConfiguration.class,
         LocalThirdpartyConfiguration.class
 })
+@PropertySource("classpath:anitrack-core.properties")
 public class ThirdpartiesConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ThirdpartiesConfiguration.class);

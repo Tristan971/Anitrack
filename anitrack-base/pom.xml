@@ -9,46 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Anitrack Core</name>
-    <artifactId>anitrack-core</artifactId>
+    <name>Anitrack Base</name>
+    <artifactId>anitrack-base</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>moe.anitrack</groupId>
-            <artifactId>anitrack-base</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>moe.anitrack</groupId>
-            <artifactId>anitrack-server</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>moe.anitrack</groupId>
-            <artifactId>anitrack-thirdparties-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>moe.anitrack</groupId>
-            <artifactId>anitrack-thirdparty-kitsu</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>moe.anitrack</groupId>
-            <artifactId>anitrack-thirdparty-local</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.immutables</groupId>
-            <artifactId>value</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -76,12 +44,6 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>moe.anitrack</groupId>
-            <artifactId>anitrack-thirdparties</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

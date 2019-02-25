@@ -1,24 +1,30 @@
 package moe.anitrack.server;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT, classes = ServerConfiguration.class)
 @RunWith(SpringRunner.class)
-public class ServerConfigurationTest {
+public abstract class BaseServerIntegrationTest {
 
     @Autowired
-    private PlayerController playerController;
+    private TestRestTemplate testRestTemplate;
 
-    @Test
-    public void contextLoads() {
-        assertThat(playerController).isNotNull();
+    @Autowired
+    private Environment environment;
+
+    public TestRestTemplate restTemplate() {
+        return testRestTemplate;
+    }
+
+    public Environment environment() {
+        return environment;
     }
 
 }
