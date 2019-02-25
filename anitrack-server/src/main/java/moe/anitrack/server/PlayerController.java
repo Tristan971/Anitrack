@@ -1,5 +1,9 @@
 package moe.anitrack.server;
 
+import static moe.anitrack.server.Routes.PLAYER;
+import static moe.anitrack.server.Routes.Player.INFO;
+import static moe.anitrack.server.Routes.Player.PLAYED;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +20,7 @@ import moe.anitrack.server.objects.PlayedMediaEvent;
 import moe.anitrack.server.reactive.PlayedMediaEventDispatcher;
 
 @RestController
-@RequestMapping(value = "player")
+@RequestMapping(PLAYER)
 public class PlayerController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PlayerController.class);
@@ -30,7 +34,7 @@ public class PlayerController {
         this.playedMediaEventDispatcher = playedMediaEventDispatcher;
     }
 
-    @GetMapping("/info")
+    @GetMapping(INFO)
     public InfoData info() {
         return ImmutableInfoData
                 .builder()
@@ -38,7 +42,7 @@ public class PlayerController {
                 .build();
     }
 
-    @PostMapping("/played")
+    @PostMapping(PLAYED)
     public void played(@RequestBody final PlayedMediaEvent playedMediaEvent) {
         LOGGER.info("Got play notification : {}", playedMediaEvent);
         playedMediaEventDispatcher.eventReceived(playedMediaEvent);

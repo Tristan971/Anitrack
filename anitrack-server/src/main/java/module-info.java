@@ -19,5 +19,6 @@ open module anitrack.server {
     requires slf4j.api;
     requires spring.webmvc;
     requires spring.boot.autoconfigure;
+    requires anitrack.base;
 
 }

@@ -10,13 +10,17 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.RestController;
+
+import moe.anitrack.base.BaseConfiguration;
 
 @EnableAutoConfiguration
 @Configuration
 @ComponentScan
 @PropertySource("classpath:anitrack-server.properties")
+@Import(BaseConfiguration.class)
 public class ServerConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServerConfiguration.class);
