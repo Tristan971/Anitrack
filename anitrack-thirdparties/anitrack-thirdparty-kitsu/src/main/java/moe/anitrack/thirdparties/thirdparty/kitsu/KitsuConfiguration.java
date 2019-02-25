@@ -14,7 +14,7 @@ import moe.anitrack.thirdparties.common.ThirdpartyBaseConfiguration;
 
 @Configuration
 @PropertySource("classpath:kitsu.properties")
-@ComponentScan("moe.anitrack.thirdparties.thirdparty.kitsu")
+@ComponentScan
 @Import(ThirdpartyBaseConfiguration.class)
 public class KitsuConfiguration {
 

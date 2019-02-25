@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
-@ComponentScan("moe.anitrack.thirdparties.common")
+@ComponentScan
 public class ThirdpartyBaseConfiguration {
 
     @Bean

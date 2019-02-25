@@ -13,7 +13,7 @@ import moe.anitrack.core.thirdparties.ThirdpartiesConfiguration;
 import moe.anitrack.server.ServerConfiguration;
 
 @Configuration
-@ComponentScan("moe.anitrack.core")
+@ComponentScan
 @Import({BaseConfiguration.class, ServerConfiguration.class, ThirdpartiesConfiguration.class})
 public class AnitrackConfiguration {
 
