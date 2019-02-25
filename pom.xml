@@ -49,10 +49,10 @@
     </properties>
 
     <modules>
-        <module>anitrack-gui</module>
-        <module>anitrack-server</module>
-        <module>anitrack-thirdparties</module>
         <module>anitrack-core</module>
+        <module>anitrack-thirdparties</module>
+        <module>anitrack-server</module>
+        <module>anitrack-gui</module>
     </modules>
 
     <build>
