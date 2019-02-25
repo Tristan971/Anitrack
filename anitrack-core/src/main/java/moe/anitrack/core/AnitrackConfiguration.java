@@ -8,12 +8,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import moe.anitrack.server.ListenerConfiguration;
+import moe.anitrack.server.ServerConfiguration;
 import moe.anitrack.core.thirdparties.ThirdpartiesConfiguration;
 
 @Configuration
 @ComponentScan("moe.anitrack.core")
-@Import({ListenerConfiguration.class, ThirdpartiesConfiguration.class})
+@Import({ServerConfiguration.class, ThirdpartiesConfiguration.class})
 public class AnitrackConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AnitrackConfiguration.class);

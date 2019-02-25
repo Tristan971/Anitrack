@@ -12,19 +12,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @Configuration
-@ComponentScan("moe.anitrack.server")
-public class ListenerConfiguration {
+@ComponentScan
+@PropertySource("classpath:anitrack-server.properties")
+public class ServerConfiguration {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ListenerConfiguration.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServerConfiguration.class);
 
     private final Map<String, Object> anitrackRestControllers;
     private final List<RequestMappingHandlerMapping> loadedMappings;
 
-    public ListenerConfiguration(
+    public ServerConfiguration(
             final ConfigurableApplicationContext applicationContext,
             final List<RequestMappingHandlerMapping> loadedMappings
     ) {
