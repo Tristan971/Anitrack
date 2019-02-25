@@ -18,5 +18,6 @@ open module anitrack.server {
     requires org.immutables.value;
     requires slf4j.api;
     requires spring.webmvc;
+    requires spring.boot.autoconfigure;
 
 }
