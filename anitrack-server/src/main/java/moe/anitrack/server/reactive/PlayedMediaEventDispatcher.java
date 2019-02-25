@@ -1,16 +1,17 @@
 package moe.anitrack.server.reactive;
 
+import static java.util.concurrent.CompletableFuture.runAsync;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import moe.anitrack.server.reactive.bindings.PlayedMediaEventListener;
 import moe.anitrack.server.objects.PlayedMediaEvent;
+import moe.anitrack.server.reactive.bindings.PlayedMediaEventListener;
 
 @Component
 public class PlayedMediaEventDispatcher {
@@ -32,11 +33,10 @@ public class PlayedMediaEventDispatcher {
     }
 
     private void notifyListenerOfEvent(final PlayedMediaEventListener eventListener, final PlayedMediaEvent event) {
-        CompletableFuture.runAsync(() -> {
-            LOGGER.debug("Notified played media event listener {} of event {}", eventListener, event);
+        runAsync(() -> {
+            LOGGER.debug("Notified {} of event {}", eventListener, event);
             eventListener.onPlayedEvent(event);
-        }).thenRunAsync(() -> {
-            LOGGER.debug("Listener {} finished accepting event.", eventListener);
+            LOGGER.debug("Listener {} finished processing {}.", eventListener, event);
         });
     }
 
