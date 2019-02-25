@@ -1,5 +1,6 @@
 package moe.anitrack.server.reactive;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -9,7 +10,9 @@ import static org.mockito.Mockito.verify;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +40,26 @@ public class PlayedMediaEventDispatcherTest {
     @Before
     public void setUp() {
         sut = new PlayedMediaEventDispatcher();
+    }
+
+    @Test
+    public void nonNullApi() {
+        Stream.of(
+                (Consumer<PlayedMediaEventListener>) sut::subscribe,
+                (Consumer<PlayedMediaEvent>) sut::eventReceived
+        ).forEach(
+                consumer -> assertThatThrownBy(() -> consumer.accept(null)).isInstanceOf(NullPointerException.class)
+        );
+    }
+
+    @Test
+    public void cannotSubscribeTwiceWithSameListener() {
+        final String someListenerName = "someListenerName";
+        final PlayedMediaEventListener listener = mockListener(someListenerName);
+        sut.subscribe(listener);
+        assertThatThrownBy(() -> sut.subscribe(listener))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(someListenerName);
     }
 
     @Test

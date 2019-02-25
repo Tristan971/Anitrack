@@ -8,6 +8,7 @@ import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import moe.anitrack.server.objects.PlayedMediaEvent;
@@ -20,15 +21,16 @@ public class PlayedMediaEventDispatcher {
 
     private final List<PlayedMediaEventListener> playedMediaEventListeners = new LinkedList<>();
 
-    public void subscribe(final PlayedMediaEventListener eventListener) {
-        if (playedMediaEventListeners.contains(Objects.requireNonNull(eventListener))) {
-            throw new IllegalStateException("You tried subscribing to played media reactive twice with the same listener!");
+    public void subscribe(@NonNull final PlayedMediaEventListener eventListener) {
+        if (playedMediaEventListeners.contains(Objects.requireNonNull(eventListener, "Tried subscribing with null listener!"))) {
+            throw new IllegalArgumentException("You tried subscribing to played media reactive twice with the same listener: " + eventListener);
         }
 
         playedMediaEventListeners.add(eventListener);
     }
 
-    public void eventReceived(final PlayedMediaEvent event) {
+    public void eventReceived(@NonNull final PlayedMediaEvent event) {
+        Objects.requireNonNull(event, "Tried dispatching null event!");
         playedMediaEventListeners.forEach(listener -> notifyListenerOfEvent(listener, event));
     }
 
