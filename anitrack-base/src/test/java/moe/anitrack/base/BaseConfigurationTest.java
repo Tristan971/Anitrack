@@ -24,4 +24,9 @@ public class BaseConfigurationTest {
         assertThat(appName).isNotBlank();
     }
 
+    @Test
+    public void versionIsCorrectlyFiltered() {
+        assertThat(appVersion).isNotEqualTo("@project.version@");
+    }
+
 }
