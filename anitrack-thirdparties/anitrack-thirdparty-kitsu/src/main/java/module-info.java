@@ -1,4 +1,4 @@
-open module anitrack.thirdparties.kitsu {
+open module anitrack.thirdparty.kitsu {
 
     exports moe.anitrack.thirdparties.thirdparty.kitsu;
     exports moe.anitrack.thirdparties.thirdparty.kitsu.objects.media;

@@ -7,7 +7,8 @@ open module anitrack.core {
     requires anitrack.server;
 
     requires anitrack.thirdparties.common;
-    requires anitrack.thirdparties.kitsu;
+    requires anitrack.thirdparty.kitsu;
+    requires anitrack.thirdparty.local;
     requires java.annotation;
     requires slf4j.api;
     requires spring.beans;

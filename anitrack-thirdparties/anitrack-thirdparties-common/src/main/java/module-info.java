@@ -15,4 +15,5 @@ open module anitrack.thirdparties.common {
     requires slf4j.api;
     requires spring.beans;
     requires com.fasterxml.jackson.databind;
+    requires jackson.annotations;
 }

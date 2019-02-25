@@ -15,12 +15,14 @@ import org.springframework.context.annotation.Import;
 import moe.anitrack.thirdparties.common.ThirdpartyBaseConfiguration;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
 import moe.anitrack.thirdparties.thirdparty.kitsu.KitsuConfiguration;
+import moe.anitrack.thirdparties.thirdparty.local.LocalThirdpartyConfiguration;
 
 @Configuration
 @EnableAutoConfiguration
 @Import(value = {
         ThirdpartyBaseConfiguration.class,
-        KitsuConfiguration.class
+        KitsuConfiguration.class,
+        LocalThirdpartyConfiguration.class
 })
 public class ThirdpartiesConfiguration {
 

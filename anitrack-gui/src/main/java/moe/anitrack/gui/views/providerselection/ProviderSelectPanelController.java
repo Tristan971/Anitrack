@@ -1,9 +1,11 @@
 package moe.anitrack.gui.views.providerselection;
 
 import static moe.tristan.easyfxml.util.Properties.whenPropertyIsSet;
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javafx.application.Platform;
@@ -19,6 +21,7 @@ import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceChoi
 import moe.tristan.easyfxml.api.FxmlController;
 
 @Component
+@Scope(scopeName = SCOPE_PROTOTYPE)
 public class ProviderSelectPanelController implements FxmlController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProviderSelectPanelController.class);
