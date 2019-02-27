@@ -2,6 +2,7 @@ package moe.anitrack.thirdparties.thirdparty.local;
 
 import javax.sql.DataSource;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -14,6 +15,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 @Configuration
 @ComponentScan
+@EnableAutoConfiguration
 @EnableJpaRepositories(
         basePackages = "moe.anitrack.thirdparties.thirdparty.local",
         entityManagerFactoryRef = "localThirdpartyH2DbEntityManagerFactory"
