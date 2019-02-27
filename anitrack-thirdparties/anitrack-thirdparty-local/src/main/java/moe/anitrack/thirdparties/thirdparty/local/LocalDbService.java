@@ -26,6 +26,11 @@ public class LocalDbService implements ThirdpartyService<MediaInfo> {
     }
 
     @Override
+    public String uniqueName() {
+        return "local-db-service";
+    }
+
+    @Override
     public void played(MediaInfo mediaInfo) {
         final LocalSimpleMedia saved = localDbRepository.save(new LocalSimpleMedia(mediaInfo.getName(), mediaInfo));
         LOGGER.info("Marked {} as played in local db!", saved);

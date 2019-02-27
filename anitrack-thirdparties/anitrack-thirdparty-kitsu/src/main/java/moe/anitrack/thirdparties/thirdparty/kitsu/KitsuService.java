@@ -24,6 +24,11 @@ public class KitsuService implements ThirdpartyService<MediaInfo> {
     }
 
     @Override
+    public String uniqueName() {
+        return "kitsu";
+    }
+
+    @Override
     public void played(MediaInfo mediaInfo) {
         LOGGER.info("Dispatching played media query to Kitsu: {}", mediaInfo);
     }

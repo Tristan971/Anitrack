@@ -11,7 +11,7 @@ import moe.tristan.easyfxml.api.FxmlNode;
 public enum Components implements FxmlNode {
     ROOT("root/Root.fxml", Root.class),
 
-    AUTHENTICATION_FORM("authentication/Authentication.fxml", AuthenticationController.class),
+    AUTH_FORM("authentication/Authentication.fxml", AuthenticationController.class),
 
     PROVIDER_SELECTION("providerselection/ProviderSelection.fxml", ProviderSelectionController.class),
     PROVIDER_SELECTION_PANE("providerselection/ProviderSelectPanel.fxml", ProviderSelectPanelController.class);

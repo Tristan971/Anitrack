@@ -1,5 +1,7 @@
 package moe.anitrack.gui.views.authentication;
 
+import static moe.anitrack.gui.views.Components.AUTH_FORM;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -16,7 +18,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import moe.anitrack.gui.views.Components;
 import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
 import moe.anitrack.thirdparties.common.model.authentication.pre.ImmutableAuthenticationField;
 import moe.tristan.easyfxml.EasyFxml;
@@ -46,7 +47,7 @@ public class AuthenticationControllerTest extends ApplicationTest {
     public void start(Stage stage) {
         this.stage = stage;
         Platform.runLater(() -> {
-            final FxmlLoadResult<Pane, AuthenticationController> loadResult = easyFxml.loadNode(Components.AUTHENTICATION_FORM, Pane.class, AuthenticationController.class);
+            final FxmlLoadResult<Pane, AuthenticationController> loadResult = easyFxml.loadNode(AUTH_FORM, Pane.class, AuthenticationController.class);
             loadResult.afterControllerLoaded(authController -> {
                 authController.setAuthenticationFields(authenticationFields);
                 authenticationController = authController;

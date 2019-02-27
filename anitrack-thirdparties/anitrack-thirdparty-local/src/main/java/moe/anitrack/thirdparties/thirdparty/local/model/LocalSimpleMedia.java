@@ -6,19 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import moe.anitrack.thirdparties.common.model.media.ImmutableMediaInfo;
 import moe.anitrack.thirdparties.common.model.media.MediaInfo;
 import moe.anitrack.thirdparties.thirdparty.local.repository.MediaInfoConverter;
 
-@Table(
-        indexes = @Index(columnList = "name"),
-        uniqueConstraints = @UniqueConstraint(columnNames = "name")
-)
 @Entity
+@Table(name = "media_known")
 public class LocalSimpleMedia {
 
     @Id

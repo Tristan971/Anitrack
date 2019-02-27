@@ -7,13 +7,13 @@ open module anitrack.thirdparties.common {
 
     requires java.annotation;
 
+    requires spring.beans;
     requires spring.boot.autoconfigure;
     requires spring.context;
     requires spring.web;
 
-    requires org.immutables.value;
-    requires slf4j.api;
-    requires spring.beans;
     requires com.fasterxml.jackson.databind;
     requires jackson.annotations;
+    requires org.immutables.value;
+    requires slf4j.api;
 }

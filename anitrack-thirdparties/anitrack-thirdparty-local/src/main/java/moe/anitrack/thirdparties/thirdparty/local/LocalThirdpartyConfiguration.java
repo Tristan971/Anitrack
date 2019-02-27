@@ -7,9 +7,8 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,12 +17,12 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@Lazy
-@EnableAutoConfiguration
-@EnableJpaRepositories
 @Configuration
 @ComponentScan
-@AutoConfigureBefore(DataSourceAutoConfiguration.class)
+@EnableAutoConfiguration
+@EnableJpaRepositories
+@EntityScan
+@Lazy
 @PropertySources({@PropertySource("classpath:local_h2.properties")})
 public class LocalThirdpartyConfiguration {
 
