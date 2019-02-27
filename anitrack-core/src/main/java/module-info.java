@@ -21,5 +21,7 @@ open module anitrack.core {
 
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.core;
+    requires spring.boot;
+    requires spring.orm;
 
 }

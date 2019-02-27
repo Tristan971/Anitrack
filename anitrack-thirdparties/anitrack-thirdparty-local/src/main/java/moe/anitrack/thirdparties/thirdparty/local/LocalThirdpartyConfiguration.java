@@ -1,52 +1,42 @@
 package moe.anitrack.thirdparties.thirdparty.local;
 
-import static java.io.File.separator;
+import javax.sql.DataSource;
 
-import javax.annotation.PostConstruct;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 @Configuration
 @ComponentScan
-@EnableAutoConfiguration
-@EnableJpaRepositories
-@EntityScan
-@Lazy
-@PropertySources({@PropertySource("classpath:local_h2.properties")})
+@EnableJpaRepositories(
+        basePackages = "moe.anitrack.thirdparties.thirdparty.local",
+        entityManagerFactoryRef = "localThirdpartyH2DbEntityManagerFactory"
+)
+@PropertySource("classpath:local_thirdparty.properties")
 public class LocalThirdpartyConfiguration {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LocalThirdpartyConfiguration.class);
-
-    private static final String H2_DB_URL_FORMAT = "jdbc:h2:${user.home}/.anitrack/%s;DB_CLOSE_ON_EXIST=FALSE";
-
-    private final DataSourceProperties dbProps;
-    private final String dbPropsLocation;
-
-    public LocalThirdpartyConfiguration(DataSourceProperties dbProps, @Value("${db_filename}") String dbFilename) {
-        this.dbProps = dbProps;
-        this.dbPropsLocation = System.getProperty("user.home") + separator + ".anitrack" + separator + dbFilename;
+    @Bean
+    @ConfigurationProperties("local.thirdparty.h2db")
+    public DataSource localThirdpartyH2DataSource() {
+        return DataSourceBuilder.create().build();
     }
 
-    @PostConstruct
-    public void postConstruct() {
-        LOGGER.info("Configuring H2 JDBC local database");
-        setH2DbLocation();
-    }
-
-    void setH2DbLocation() {
-        final String dbUrl = String.format(H2_DB_URL_FORMAT, dbPropsLocation);
-        dbProps.setUrl(dbUrl);
+    @Bean
+    public LocalContainerEntityManagerFactoryBean localThirdpartyH2EntityManagerFactory(
+            EntityManagerFactoryBuilder factoryBuilder,
+            DataSource localThirdpartyH2DataSource
+    ) {
+        return factoryBuilder
+                .dataSource(localThirdpartyH2DataSource)
+                .packages("moe.anitrack.thirdparties.thirdparty.local")
+                .persistenceUnit("localThirdpartyH2")
+                .build();
     }
 
 }
