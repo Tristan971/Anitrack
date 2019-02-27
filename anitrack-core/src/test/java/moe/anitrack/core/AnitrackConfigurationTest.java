@@ -8,18 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import moe.anitrack.core.thirdparties.CurrentThirdpartySystem;
+import moe.anitrack.core.thirdparties.choice.ThirdpartySelectionService;
 
 @ContextConfiguration(classes = AnitrackConfiguration.class)
 @RunWith(SpringRunner.class)
 public class AnitrackConfigurationTest {
 
     @Autowired
-    private CurrentThirdpartySystem currentThirdpartySystem;
+    private ThirdpartySelectionService thirdpartySelectionService;
 
     @Test
     public void contextLoads() {
-        assertThat(currentThirdpartySystem).isNotNull();
+        assertThat(thirdpartySelectionService).isNotNull();
     }
 
 }

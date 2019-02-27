@@ -6,7 +6,7 @@ import static moe.anitrack.gui.views.Components.ROOT;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import moe.anitrack.core.thirdparties.CurrentThirdpartySystem;
+import moe.anitrack.core.thirdparties.choice.ThirdpartySelectionService;
 import moe.tristan.easyfxml.EasyFxml;
 import moe.tristan.easyfxml.FxUiManager;
 import moe.tristan.easyfxml.api.FxmlNode;
@@ -15,12 +15,12 @@ import moe.tristan.easyfxml.api.FxmlNode;
 public class AnitrackUiManager extends FxUiManager {
 
     private final Environment environment;
-    private final CurrentThirdpartySystem currentThirdpartySystem;
+    private final ThirdpartySelectionService thirdpartySelectionService;
 
-    protected AnitrackUiManager(EasyFxml easyFxml, Environment environment, CurrentThirdpartySystem currentThirdpartySystem) {
+    protected AnitrackUiManager(EasyFxml easyFxml, Environment environment, ThirdpartySelectionService thirdpartySelectionService) {
         super(easyFxml);
         this.environment = environment;
-        this.currentThirdpartySystem = currentThirdpartySystem;
+        this.thirdpartySelectionService = thirdpartySelectionService;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class AnitrackUiManager extends FxUiManager {
 
     @Override
     protected FxmlNode mainComponent() {
-        return currentThirdpartySystem.isCurrentlySet() ? ROOT : PROVIDER_SELECTION;
+        return thirdpartySelectionService.isCurrentlySet() ? ROOT : PROVIDER_SELECTION;
     }
 
 }
