@@ -6,9 +6,7 @@ open module anitrack.thirdparty.local {
     requires anitrack.persistence;
     requires anitrack.thirdparties.common;
 
-    requires java.annotation;
     requires java.persistence;
-    requires java.sql;
 
     requires spring.boot.autoconfigure;
     requires spring.context;

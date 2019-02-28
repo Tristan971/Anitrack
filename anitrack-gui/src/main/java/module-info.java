@@ -8,7 +8,6 @@ open module anitrack.gui {
 
     requires easyfxml;
 
-    requires anitrack.server;
     requires anitrack.core;
     requires javafx.fxml;
     requires javafx.graphics;

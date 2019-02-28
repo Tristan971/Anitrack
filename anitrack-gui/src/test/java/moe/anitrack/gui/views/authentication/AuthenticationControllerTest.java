@@ -1,6 +1,7 @@
 package moe.anitrack.gui.views.authentication;
 
 import static moe.anitrack.gui.views.Components.AUTH_FORM;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
@@ -30,13 +31,8 @@ public class AuthenticationControllerTest extends ApplicationTest {
     private static final String FIELD_SIMPLE = "field_simple";
     private static final String FIELD_PASSWORD = "field_password";
 
-    private Stage stage;
-
     @Autowired
     private EasyFxml easyFxml;
-
-    private Pane node;
-    private AuthenticationController authenticationController;
 
     private final List<AuthenticationField> authenticationFields = List.of(
             ImmutableAuthenticationField.of(FIELD_SIMPLE, false),
@@ -45,14 +41,9 @@ public class AuthenticationControllerTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) {
-        this.stage = stage;
         Platform.runLater(() -> {
             final FxmlLoadResult<Pane, AuthenticationController> loadResult = easyFxml.loadNode(AUTH_FORM, Pane.class, AuthenticationController.class);
-            loadResult.afterControllerLoaded(authController -> {
-                authController.setAuthenticationFields(authenticationFields);
-                authenticationController = authController;
-            });
-            loadResult.afterNodeLoaded(node -> this.node = node);
+            loadResult.afterControllerLoaded(authController -> authController.setAuthenticationFields(authenticationFields));
             final Pane node = loadResult.getNode().getOrNull();
             stage.setScene(new Scene(node));
             stage.show();
@@ -63,7 +54,9 @@ public class AuthenticationControllerTest extends ApplicationTest {
     public void loadsTwoFields() {
         Platform.runLater(() -> {
             final TextField simpleField = lookup(".text-field").queryAs(TextField.class);
+            assertThat(simpleField).isNotNull();
             final PasswordField passwordField = lookup(".password-field").queryAs(PasswordField.class);
+            assertThat(passwordField).isNotNull();
         });
     }
 

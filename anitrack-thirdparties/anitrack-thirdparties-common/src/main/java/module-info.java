@@ -5,15 +5,11 @@ open module anitrack.thirdparties.common {
     exports moe.anitrack.thirdparties.common.model.media;
     exports moe.anitrack.thirdparties.common.model.presentation;
 
-    requires java.annotation;
-
     requires spring.beans;
-    requires spring.boot.autoconfigure;
     requires spring.context;
     requires spring.web;
 
     requires com.fasterxml.jackson.databind;
-    requires jackson.annotations;
     requires org.immutables.value;
     requires slf4j.api;
 }

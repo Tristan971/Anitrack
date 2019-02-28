@@ -14,7 +14,7 @@ import moe.anitrack.server.objects.ImmutablePlayedMediaEvent;
 import moe.anitrack.server.objects.InfoData;
 import moe.anitrack.server.objects.PlayedMediaEvent;
 
-@TestPropertySource("classpath:application.properties")
+@TestPropertySource("classpath:server.properties")
 public class PlayerControllerTest extends BaseServerIntegrationTest {
 
     @Test

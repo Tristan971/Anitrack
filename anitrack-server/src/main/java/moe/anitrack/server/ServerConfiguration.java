@@ -19,7 +19,7 @@ import moe.anitrack.base.BaseConfiguration;
 @EnableAutoConfiguration
 @Configuration
 @ComponentScan
-@PropertySource("classpath:anitrack-server.properties")
+@PropertySource("classpath:server.properties")
 @Import(BaseConfiguration.class)
 public class ServerConfiguration {
 
