@@ -10,4 +10,5 @@ open module anitrack.persistence {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
 
+    requires transitive net.bytebuddy;
 }
