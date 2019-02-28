@@ -1,4 +1,4 @@
-package moe.anitrack.core.persistence.configuration;
+package moe.anitrack.persistence;
 
 import java.io.IOException;
 import java.util.Map;

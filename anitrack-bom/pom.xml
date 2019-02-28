@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>moe.anitrack</groupId>
+    <artifactId>anitrack-bom</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Anitrack BOM</name>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>moe.anitrack</groupId>
+                <artifactId>anitrack-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>moe.anitrack</groupId>
+                <artifactId>anitrack-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>moe.anitrack</groupId>
+                <artifactId>anitrack-gui</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>moe.anitrack</groupId>
+                <artifactId>anitrack-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>moe.anitrack</groupId>
+                <artifactId>anitrack-server</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>moe.anitrack</groupId>
+                <artifactId>anitrack-thirdparties-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>moe.anitrack</groupId>
+                <artifactId>anitrack-thirdparty-local</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>moe.anitrack</groupId>
+                <artifactId>anitrack-thirdparty-kitsu</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

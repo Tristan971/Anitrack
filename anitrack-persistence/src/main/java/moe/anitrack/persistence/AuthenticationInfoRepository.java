@@ -1,4 +1,4 @@
-package moe.anitrack.core.persistence.configuration;
+package moe.anitrack.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

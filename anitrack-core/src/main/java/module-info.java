@@ -4,6 +4,7 @@ open module anitrack.core {
     exports moe.anitrack.core.thirdparties.choice;
 
     requires anitrack.base;
+    requires anitrack.persistence;
     requires anitrack.server;
     requires anitrack.thirdparties.common;
     requires anitrack.thirdparty.kitsu;

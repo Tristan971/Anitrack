@@ -3,13 +3,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-
     <name>Anitrack Parent</name>
     <description>Track animes you watch</description>
     <url>https://tristan971.github.io/Anitrack/</url>
@@ -41,92 +34,19 @@
         </developer>
     </developers>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
-        <openjfx.version>11.0.1</openjfx.version>
-    </properties>
-
     <modules>
+        <!-- Special modules used to manage consistent versionning internally and with 3rd-party dependencies -->
+        <!-- Dark Maven magic delivered from friendly wizards at my job (Treatwell) -->
+        <module>anitrack-bom</module>
+        <module>anitrack-module-parent</module>
+
+        <!-- Proper modules -->
         <module>anitrack-base</module>
         <module>anitrack-core</module>
-        <module>anitrack-thirdparties</module>
-        <module>anitrack-server</module>
         <module>anitrack-gui</module>
+        <module>anitrack-persistence</module>
+        <module>anitrack-server</module>
+        <module>anitrack-thirdparties</module>
     </modules>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <annotationProcessorPaths>
-                        <dependency>
-                            <groupId>org.immutables</groupId>
-                            <artifactId>value</artifactId>
-                            <version>2.7.4</version>
-                        </dependency>
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
-                <configuration>
-                    <useModulePath>false</useModulePath>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.3</version>
-                <executions>
-                    <execution>
-                        <id>default-prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>default-report</id>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.immutables</groupId>
-                <artifactId>value</artifactId>
-                <version>2.7.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.awaitility</groupId>
-                <artifactId>awaitility</artifactId>
-                <version>3.1.6</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
 </project>

@@ -6,28 +6,29 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moe.anitrack.gui.views.authentication.AuthenticationController">
-   <children>
-      <VBox layoutX="250.0" layoutY="90.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="30.0" VBox.vgrow="NEVER">
-               <children>
-                  <Label text="Authentication requested for service">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label text="SERVICE_NAME">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <Separator prefWidth="200.0" />
-            <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
-         </children>
-      </VBox>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="moe.anitrack.gui.views.authentication.AuthenticationController">
+    <children>
+        <VBox layoutX="250.0" layoutY="90.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="30.0" VBox.vgrow="NEVER">
+                    <children>
+                        <Label text="Authentication requested for service">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Label>
+                        <Label text="SERVICE_NAME">
+                            <font>
+                                <Font name="System Bold" size="24.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <Separator prefWidth="200.0"/>
+                <VBox fx:id="fieldsBox" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS"/>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

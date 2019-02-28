@@ -3,33 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>moe.anitrack</groupId>
-        <artifactId>anitrack-thirdparties</artifactId>
+        <artifactId>anitrack-module-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../anitrack-module-parent</relativePath>
     </parent>
 
-    <name>Anitrack Thirdparties Common Infrastructure</name>
-    <artifactId>anitrack-thirdparties-common</artifactId>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <artifactId>anitrack-persistence</artifactId>
+    <name>Anitrack Persistence</name>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
     </dependencies>
 
