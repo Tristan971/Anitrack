@@ -23,6 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <java.version>11</java.version>
+
         <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
@@ -32,6 +33,7 @@
         <testfx.version>4.0.15-alpha</testfx.version>
 
         <immutables.version>2.7.4</immutables.version>
+        <javassist.version>3.24.1-GA</javassist.version>
 
         <awaitility.version>3.1.6</awaitility.version>
         <reflections.version>0.9.11</reflections.version>
@@ -133,28 +135,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.immutables</groupId>
-                <artifactId>value</artifactId>
-                <version>${immutables.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>moe.tristan</groupId>
-                <artifactId>easyfxml</artifactId>
-                <version>${easyfxml.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.testfx</groupId>
-                <artifactId>testfx-core</artifactId>
-                <version>${testfx.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.testfx</groupId>
-                <artifactId>testfx-junit</artifactId>
-                <version>${testfx.version}</version>
-                <scope>test</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -171,7 +151,21 @@
         <dependency>
             <groupId>org.immutables</groupId>
             <artifactId>value</artifactId>
+            <version>${immutables.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>${javassist.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>${awaitility.version}</version>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -183,11 +177,28 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <dependency>
-            <groupId>org.awaitility</groupId>
-            <artifactId>awaitility</artifactId>
-            <version>${awaitility.version}</version>
+            <groupId>moe.tristan</groupId>
+            <artifactId>easyfxml</artifactId>
+            <version>${easyfxml.version}</version>
+            <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>${testfx.version}</version>
+            <scope>test</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit</artifactId>
+            <version>${testfx.version}</version>
+            <scope>test</scope>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
