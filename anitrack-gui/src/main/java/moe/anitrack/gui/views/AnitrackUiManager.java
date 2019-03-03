@@ -7,7 +7,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import moe.anitrack.core.thirdparties.choice.ThirdpartySelectionService;
-import moe.tristan.easyfxml.EasyFxml;
 import moe.tristan.easyfxml.FxUiManager;
 import moe.tristan.easyfxml.api.FxmlNode;
 
@@ -17,8 +16,7 @@ public class AnitrackUiManager extends FxUiManager {
     private final Environment environment;
     private final ThirdpartySelectionService thirdpartySelectionService;
 
-    protected AnitrackUiManager(EasyFxml easyFxml, Environment environment, ThirdpartySelectionService thirdpartySelectionService) {
-        super(easyFxml);
+    protected AnitrackUiManager(Environment environment, ThirdpartySelectionService thirdpartySelectionService) {
         this.environment = environment;
         this.thirdpartySelectionService = thirdpartySelectionService;
     }

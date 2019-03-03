@@ -15,5 +15,6 @@ open module anitrack.thirdparties.common {
     requires jackson.annotations;
     requires org.immutables.value;
     requires slf4j.api;
+    requires anitrack.base;
 
 }

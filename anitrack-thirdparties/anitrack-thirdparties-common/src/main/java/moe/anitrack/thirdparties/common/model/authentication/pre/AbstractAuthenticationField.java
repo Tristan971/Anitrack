@@ -7,27 +7,30 @@ import org.immutables.value.Value.Default;
 import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Parameter;
 
+import moe.anitrack.base.util.ValueObjectStyle;
+
 @Immutable
-public interface AuthenticationField {
+@ValueObjectStyle
+public abstract class AbstractAuthenticationField {
 
     /**
      * @return The name of the field that the user will see
      */
     @Parameter
-    String getFieldName();
+    public abstract String getFieldName();
 
     /**
      * @return Whether to "hide" typed value (typical usage of dots in password fields)
      */
     @Parameter
     @Default
-    default boolean isPasswordLike() {
+    public boolean isPasswordLike() {
         return false;
     }
 
     /**
      * @return An optional validator for pre-validation of the entered value
      */
-    Optional<Predicate<String>> getValidator();
+    public abstract Optional<Predicate<String>> getValidator();
 
 }

@@ -29,7 +29,7 @@
         <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
 
         <openjfx.version>11.0.1</openjfx.version>
-        <easyfxml.version>3.0.4</easyfxml.version>
+        <easyfxml.version>3.1.0</easyfxml.version>
         <testfx.version>4.0.15-alpha</testfx.version>
 
         <immutables.version>2.7.4</immutables.version>
@@ -176,27 +176,6 @@
                     <artifactId>jsonassert</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>moe.tristan</groupId>
-            <artifactId>easyfxml</artifactId>
-            <version>${easyfxml.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.testfx</groupId>
-            <artifactId>testfx-core</artifactId>
-            <version>${testfx.version}</version>
-            <scope>test</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.testfx</groupId>
-            <artifactId>testfx-junit</artifactId>
-            <version>${testfx.version}</version>
-            <scope>test</scope>
-            <optional>true</optional>
         </dependency>
 
         <dependency>

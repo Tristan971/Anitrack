@@ -4,9 +4,6 @@ open module anitrack.gui {
     requires anitrack.thirdparties.common;
 
     requires easyfxml;
-    requires javafx.controls;
-    requires javafx.fxml;
-    requires javafx.graphics;
 
     requires spring.boot;
     requires spring.boot.autoconfigure;
