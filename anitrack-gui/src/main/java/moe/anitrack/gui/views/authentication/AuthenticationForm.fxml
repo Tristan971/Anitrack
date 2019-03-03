@@ -3,14 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<BorderPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moe.anitrack.gui.views.authentication.AuthenticationFormController">
+<BorderPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="moe.anitrack.gui.views.authentication.AuthenticationFormController">
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
@@ -18,12 +17,12 @@
                     <children>
                         <Label text="Some authentication information is required to synchronize with">
                             <font>
-                                <Font size="14.0" />
+                                <Font size="14.0"/>
                             </font>
                         </Label>
                         <Label fx:id="serviceName" text="SERVICE_NAME">
                             <font>
-                                <Font name="System Bold" size="18.0" />
+                                <Font name="System Bold" size="18.0"/>
                             </font>
                         </Label>
                     </children>
@@ -31,22 +30,23 @@
             </children>
         </VBox>
     </top>
-   <bottom>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="CENTER" spacing="10.0">
-               <children>
-                  <Button fx:id="submitButton" alignment="CENTER" minWidth="96.0" mnemonicParsing="false" text="Submit" textAlignment="CENTER" HBox.hgrow="NEVER" />
-                  <ProgressIndicator fx:id="loginProgressIndicator" progress="0.0" HBox.hgrow="NEVER" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-         </children>
-      </VBox>
-   </bottom>
-   <center>
-      <ListView fx:id="listView" BorderPane.alignment="CENTER" />
-   </center>
+    <bottom>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Button fx:id="submitButton" alignment="CENTER" minWidth="96.0" mnemonicParsing="false" text="Submit" textAlignment="CENTER"
+                                HBox.hgrow="NEVER"/>
+                        <ProgressIndicator fx:id="loginProgressIndicator" progress="0.0" HBox.hgrow="NEVER"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </bottom>
+    <center>
+        <VBox fx:id="fieldsBox" spacing="20.0" BorderPane.alignment="TOP_LEFT"/>
+    </center>
 </BorderPane>

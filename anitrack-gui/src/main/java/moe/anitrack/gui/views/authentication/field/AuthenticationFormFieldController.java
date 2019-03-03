@@ -1,8 +1,12 @@
 package moe.anitrack.gui.views.authentication.field;
 
 import static moe.tristan.easyfxml.util.Properties.whenPropertyIsSet;
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 import java.util.function.Supplier;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
@@ -14,9 +18,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
-import moe.tristan.easyfxml.model.components.listview.ComponentCellFxmlController;
+import moe.tristan.easyfxml.api.FxmlController;
 
-public class AuthenticationFormFieldController implements ComponentCellFxmlController<AuthenticationField> {
+@Component
+@Scope(scopeName = SCOPE_PROTOTYPE)
+public class AuthenticationFormFieldController implements FxmlController {
 
     @FXML
     private Label fieldName;
@@ -30,8 +36,7 @@ public class AuthenticationFormFieldController implements ComponentCellFxmlContr
         whenPropertyIsSet(fieldProperty, this::displayField);
     }
 
-    @Override
-    public void updateWithValue(AuthenticationField newValue) {
+    public void setField(AuthenticationField newValue) {
         this.fieldProperty.setValue(newValue);
     }
 
