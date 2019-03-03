@@ -1,5 +1,6 @@
 package moe.anitrack.gui.view.views.authentication;
 
+import static java.util.concurrent.CompletableFuture.runAsync;
 import static moe.tristan.easyfxml.util.Buttons.setOnClick;
 import static moe.tristan.easyfxml.util.Nodes.hideAndResizeParentIf;
 import static moe.tristan.easyfxml.util.Properties.whenPropertyIsSet;
@@ -8,7 +9,7 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -32,8 +33,8 @@ import javafx.stage.Stage;
 import moe.anitrack.gui.view.util.OwnStageAware;
 import moe.anitrack.gui.view.views.authentication.field.AuthenticationFormFieldComponent;
 import moe.anitrack.gui.view.views.authentication.field.AuthenticationFormFieldController;
-import moe.anitrack.thirdparties.common.ThirdpartyService;
 import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
 import moe.tristan.easyfxml.EasyFxml;
 import moe.tristan.easyfxml.api.FxmlController;
 import moe.tristan.easyfxml.model.fxml.FxmlLoadResult;
@@ -59,10 +60,12 @@ public class AuthenticationFormController implements FxmlController, OwnStageAwa
     private final EasyFxml easyFxml;
     private final AuthenticationFormFieldComponent formFieldComponent;
 
-    private final Property<ThirdpartyService> serviceRequestedProp = new SimpleObjectProperty<>();
+    private final Property<ThirdpartyServiceInfo> serviceInfo = new SimpleObjectProperty<>();
+    private final Property<List<AuthenticationField>> formFields = new SimpleObjectProperty<>();
 
     private final BooleanProperty submitting = new SimpleBooleanProperty(false);
-    private final Map<String, String> submittedValues = new HashMap<>();
+    private final Property<Consumer<Map<AuthenticationField, String>>> submitCallbackProp = new SimpleObjectProperty<>();
+    private final Map<AuthenticationField, String> fieldValues = new HashMap<>();
 
     private Stage formStage;
 
@@ -74,7 +77,9 @@ public class AuthenticationFormController implements FxmlController, OwnStageAwa
     @Override
     public void initialize() {
         LOGGER.debug("Requested authentication form...");
-        whenPropertyIsSet(serviceRequestedProp, this::serviceIsSet);
+        whenPropertyIsSet(serviceInfo, this::serviceInfoIsSet);
+        whenPropertyIsSet(formFields, this::formFieldsAreSet);
+
         setOnClick(submitButton, this::submit);
 
         hideAndResizeParentIf(submitButton, submitting.not());
@@ -82,33 +87,30 @@ public class AuthenticationFormController implements FxmlController, OwnStageAwa
         fieldsBox.disableProperty().bind(submitting);
     }
 
-    public void setServiceRequested(ThirdpartyService serviceRequested) {
-        this.serviceRequestedProp.setValue(serviceRequested);
+    private void serviceInfoIsSet() {
+        final ThirdpartyServiceInfo serviceInfo = this.serviceInfo.getValue();
+
+        LOGGER.info("Displaying authentication form for service \"{}\"", serviceInfo.getName());
+
+        serviceName.setText(serviceInfo.getName());
     }
 
-    @Override
-    public void setOwnStage(Stage stage) {
-        this.formStage = stage;
-    }
+    private void formFieldsAreSet() {
+        final List<AuthenticationField> authenticationFields = formFields.getValue();
 
-    private void serviceIsSet() {
-        final ThirdpartyService service = serviceRequestedProp.getValue();
+        LOGGER.info("Fields requested: {}", authenticationFields);
 
-        LOGGER.info(
-                "Displaying authentication form for service \"{}\": {}",
-                service.getChoiceInfo().getName(),
-                service.getAuthenticationService().getAuthenticationFields()
-        );
-
-        serviceName.setText(service.getChoiceInfo().getName());
-        final List<Pane> fields = buildAuthenticationFields(service);
-        fieldsBox.getChildren().setAll(fields);
+        final List<Pane> formFields = authenticationFields
+                .stream()
+                .map(this::buildAuthenticationField)
+                .collect(Collectors.toList());
+        fieldsBox.getChildren().setAll(formFields);
     }
 
     private void submit() {
         submitting.set(true);
-        CompletableFuture.runAsync(
-                () -> serviceRequestedProp.getValue().getAuthenticationService().authenticateWith(submittedValues)
+        runAsync(
+                () -> submitCallbackProp.getValue().accept(fieldValues)
         ).whenCompleteAsync((success, error) -> {
             if (error != null) {
                 LOGGER.error("Cannot authenticate!", error);
@@ -120,15 +122,6 @@ public class AuthenticationFormController implements FxmlController, OwnStageAwa
         }, Platform::runLater);
     }
 
-    private List<Pane> buildAuthenticationFields(ThirdpartyService service) {
-        return service
-                .getAuthenticationService()
-                .getAuthenticationFields()
-                .stream()
-                .map(this::buildAuthenticationField)
-                .collect(Collectors.toList());
-    }
-
     private Pane buildAuthenticationField(AuthenticationField field) {
         final FxmlLoadResult<Pane, AuthenticationFormFieldController> fieldLoad = easyFxml.loadNode(
                 formFieldComponent,
@@ -138,9 +131,26 @@ public class AuthenticationFormController implements FxmlController, OwnStageAwa
         fieldLoad.afterControllerLoaded(fieldController -> {
             LOGGER.debug("Initializing authentication form field for: {}", field);
             fieldController.setField(field);
-            fieldController.setOnFieldUpdated(fieldValue -> submittedValues.put(field.getFieldName(), fieldValue));
+            fieldController.setOnFieldUpdated(fieldValue -> fieldValues.put(field, fieldValue));
         });
         return fieldLoad.orExceptionPane().get();
+    }
+
+    public void setSubmit(Consumer<Map<AuthenticationField, String>> submit) {
+        this.submitCallbackProp.setValue(submit);
+    }
+
+    public void setServiceInfo(ThirdpartyServiceInfo serviceInfo) {
+        this.serviceInfo.setValue(serviceInfo);
+    }
+
+    public void setFormFields(List<AuthenticationField> authenticationFields) {
+        this.formFields.setValue(authenticationFields);
+    }
+
+    @Override
+    public void setOwnStage(Stage stage) {
+        this.formStage = stage;
     }
 
 }

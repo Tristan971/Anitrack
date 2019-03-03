@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
 import moe.anitrack.thirdparties.common.model.media.MediaInfo;
-import moe.anitrack.thirdparties.common.model.presentation.ImmutableThirdpartyServiceChoiceInfo;
-import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceChoiceInfo;
+import moe.anitrack.thirdparties.common.model.presentation.ImmutableThirdpartyServiceInfo;
+import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
 
 @Component
 public class KitsuService implements ThirdpartyService<MediaInfo> {
@@ -44,8 +44,8 @@ public class KitsuService implements ThirdpartyService<MediaInfo> {
     }
 
     @Override
-    public ThirdpartyServiceChoiceInfo getChoiceInfo() {
-        return ImmutableThirdpartyServiceChoiceInfo
+    public ThirdpartyServiceInfo getChoiceInfo() {
+        return ImmutableThirdpartyServiceInfo
                 .builder()
                 .name("Kitsu")
                 .logoUrl(getClass().getClassLoader().getResource("kitsu-logo.jpg"))

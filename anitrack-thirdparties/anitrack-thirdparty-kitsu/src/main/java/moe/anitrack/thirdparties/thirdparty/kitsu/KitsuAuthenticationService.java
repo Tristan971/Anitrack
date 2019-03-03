@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import moe.anitrack.base.util.form.FormEmailValidator;
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
 import moe.anitrack.thirdparties.common.model.authentication.post.AuthenticationResult;
 import moe.anitrack.thirdparties.common.model.authentication.post.ImmutableAuthenticationResult;
@@ -38,33 +40,38 @@ public class KitsuAuthenticationService implements ThirdpartyAuthenticationServi
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KitsuAuthenticationService.class);
 
-    private static final String PASSWORD_FIELD = "Password";
-    private static final String EMAIL_FIELD = "E-mail address";
     private static final String OAUTH_ENDPOINT = "https://kitsu.io/api/oauth/token";
     private static final String OAUTH_BODY_TEMPLATE = "grant_type=password&username=%s&password=%s";
+    private static final String EMAIL_FIELD_NAME = "E-mail address";
+    private static final String PASSWORD_FIELD_NAME = "Password";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final AtomicReference<OauthPasswordAuthenticationResponse> authentication;
 
-    public KitsuAuthenticationService(RestTemplate restTemplate, ObjectMapper objectMapper) {
+    private final AuthenticationField emailField;
+    private final AuthenticationField passwordField;
+
+    @Autowired
+    public KitsuAuthenticationService(RestTemplate restTemplate, ObjectMapper objectMapper, FormEmailValidator emailValidator) {
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
         this.authentication = new AtomicReference<>();
+
+        this.emailField = AuthenticationField.builder().fieldName(EMAIL_FIELD_NAME).validator(emailValidator).build();
+        this.passwordField = AuthenticationField.of(PASSWORD_FIELD_NAME, true);
     }
 
     @Override
     public List<AuthenticationField> getAuthenticationFields() {
-        final AuthenticationField emailField = AuthenticationField.of(EMAIL_FIELD, false);
-        final AuthenticationField passwordField = AuthenticationField.of(PASSWORD_FIELD, true);
-
         return List.of(emailField, passwordField);
     }
 
     @Override
-    public AuthenticationResult authenticateWith(Map<String, String> authenticationValues) {
-        final String email = authenticationValues.get(EMAIL_FIELD);
-        final String password = authenticationValues.get(PASSWORD_FIELD);
+    public AuthenticationResult authenticateWith(Map<AuthenticationField, String> authenticationValues) {
+        final String email = authenticationValues.get(emailField);
+        final String password = authenticationValues.get(passwordField);
+
         try {
             authenticateWith(email, password);
             return ImmutableAuthenticationResult

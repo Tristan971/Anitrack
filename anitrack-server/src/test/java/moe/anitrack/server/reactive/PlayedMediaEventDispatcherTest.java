@@ -90,7 +90,7 @@ public class PlayedMediaEventDispatcherTest {
 
             listeners.forEach(listener -> {
                 verify(listener, timeout(2000).times(1)).onPlayedEvent(eq(event)); // only received this event once
-                verify(listener, timeout(2000).times(eventNumber + 1)).onPlayedEvent(any()); // received all previous events + 1 (this one)
+                verify(listener, timeout(2000).times(eventNumber + 1)).onPlayedEvent(any()); // received all previous actors + 1 (this one)
             });
         });
     }

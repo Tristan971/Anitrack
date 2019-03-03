@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
 import moe.anitrack.thirdparties.common.model.media.MediaInfo;
-import moe.anitrack.thirdparties.common.model.presentation.ImmutableThirdpartyServiceChoiceInfo;
-import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceChoiceInfo;
+import moe.anitrack.thirdparties.common.model.presentation.ImmutableThirdpartyServiceInfo;
+import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
 import moe.anitrack.thirdparties.thirdparty.local.model.LocalSimpleMedia;
 import moe.anitrack.thirdparties.thirdparty.local.repository.LocalDbRepository;
 
@@ -47,8 +47,8 @@ public class LocalDbService implements ThirdpartyService<MediaInfo> {
     }
 
     @Override
-    public ThirdpartyServiceChoiceInfo getChoiceInfo() {
-        return ImmutableThirdpartyServiceChoiceInfo
+    public ThirdpartyServiceInfo getChoiceInfo() {
+        return ImmutableThirdpartyServiceInfo
                 .builder()
                 .name("Locally only")
                 .logoUrl(getClass().getClassLoader().getResource("local.png"))

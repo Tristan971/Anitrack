@@ -16,6 +16,6 @@ public interface ThirdpartyAuthenticationService {
      *
      * @return Some user-readable version of their name (username, email, id... whatever is recognizable for the success notification)
      */
-    AuthenticationResult authenticateWith(final Map<String, String> authenticationValues);
+    AuthenticationResult authenticateWith(final Map<AuthenticationField, String> authenticationValues);
 
 }

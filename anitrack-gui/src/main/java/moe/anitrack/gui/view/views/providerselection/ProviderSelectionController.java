@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import moe.anitrack.core.thirdparties.choice.ThirdpartySelectionService;
 import moe.anitrack.gui.view.views.authentication.AuthenticationFormComponent;
 import moe.anitrack.gui.view.views.authentication.AuthenticationFormController;
 import moe.anitrack.gui.view.views.providerselection.provider.ProviderPanelComponent;
@@ -30,17 +31,20 @@ public class ProviderSelectionController implements FxmlController {
     private final ProviderPanelComponent providerPanelComponent;
     private final List<ThirdpartyService> thirdparties;
     private final AuthenticationFormComponent authenticationFormComponent;
+    private final ThirdpartySelectionService thirdpartySelectionService;
 
     public ProviderSelectionController(
             EasyFxml easyFxml,
             ProviderPanelComponent providerPanelComponent,
             List<ThirdpartyService> thirdparties,
-            AuthenticationFormComponent authenticationFormComponent
+            AuthenticationFormComponent authenticationFormComponent,
+            ThirdpartySelectionService thirdpartySelectionService
     ) {
         this.easyFxml = easyFxml;
         this.providerPanelComponent = providerPanelComponent;
         this.thirdparties = thirdparties;
         this.authenticationFormComponent = authenticationFormComponent;
+        this.thirdpartySelectionService = thirdpartySelectionService;
     }
 
     @Override
@@ -67,7 +71,8 @@ public class ProviderSelectionController implements FxmlController {
         );
         Stage formStage = new Stage();
         providerAuthenticationForm.afterControllerLoaded(formController -> {
-            formController.setServiceRequested(thirdparty);
+            formController.setServiceInfo(thirdparty.getChoiceInfo());
+            formController.setFormFields(thirdparty.getAuthenticationService().getAuthenticationFields());
             formController.setOwnStage(formStage);
         });
         formStage.setTitle(thirdparty.getChoiceInfo().getName());

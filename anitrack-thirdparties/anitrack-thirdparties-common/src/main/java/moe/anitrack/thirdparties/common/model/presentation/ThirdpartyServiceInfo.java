@@ -5,7 +5,7 @@ import java.net.URL;
 import org.immutables.value.Value.Immutable;
 
 @Immutable
-public interface ThirdpartyServiceChoiceInfo {
+public interface ThirdpartyServiceInfo {
 
     String getName();
 

@@ -17,7 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import moe.anitrack.thirdparties.common.ThirdpartyService;
-import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceChoiceInfo;
+import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
 import moe.tristan.easyfxml.api.FxmlController;
 
 @Component
@@ -40,7 +40,7 @@ public class ProviderPanelController implements FxmlController {
     }
 
     private void servicePresentedSet(ThirdpartyService value) {
-        final ThirdpartyServiceChoiceInfo choiceInfo = value.getChoiceInfo();
+        final ThirdpartyServiceInfo choiceInfo = value.getChoiceInfo();
         Platform.runLater(() -> {
             LOGGER.info("Loaded third-party service provider pane for {}", value.getClass().getSimpleName());
             logo.setImage(new Image(choiceInfo.getLogoUrl().toString()));

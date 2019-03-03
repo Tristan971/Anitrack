@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
 import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
-import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceChoiceInfo;
+import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
 import moe.tristan.easyfxml.EasyFxml;
 import moe.tristan.easyfxml.model.fxml.FxmlLoadResult;
 import moe.tristan.easyfxml.test.FxNodeTest;
@@ -54,7 +54,7 @@ public class AuthenticationFormControllerTest extends FxNodeTest {
         when(service.getAuthenticationService()).thenReturn(authenticationService);
         when(authenticationService.getAuthenticationFields()).thenReturn(AUTHENTICATION_FIELDS);
 
-        final var choiceInfo = mock(ThirdpartyServiceChoiceInfo.class);
+        final var choiceInfo = mock(ThirdpartyServiceInfo.class);
         when(service.getChoiceInfo()).thenReturn(choiceInfo);
         when(choiceInfo.getName()).thenReturn(SERVICE_NAME);
 

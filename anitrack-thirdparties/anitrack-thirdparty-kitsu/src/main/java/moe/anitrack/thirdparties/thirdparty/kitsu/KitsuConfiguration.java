@@ -6,16 +6,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.client.RestTemplate;
 
-import moe.anitrack.thirdparties.common.ThirdpartyBaseConfiguration;
-
 @Configuration
 @PropertySource("classpath:kitsu.properties")
-@ComponentScan
-@Import(ThirdpartyBaseConfiguration.class)
+@ComponentScan("moe.anitrack.thirdparties.thirdparty.kitsu")
 public class KitsuConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KitsuConfiguration.class);
