@@ -13,9 +13,9 @@
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
-                <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="NEVER">
+                <HBox alignment="BASELINE_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
                     <children>
-                        <Label text="Sign-in to">
+                        <Label text="Authenticate with ">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -46,6 +46,6 @@
         </VBox>
     </bottom>
     <center>
-        <VBox fx:id="fieldsBox" spacing="20.0" BorderPane.alignment="TOP_LEFT" />
+        <VBox fx:id="fieldsBox" alignment="TOP_CENTER" spacing="20.0" BorderPane.alignment="TOP_CENTER" />
     </center>
 </BorderPane>

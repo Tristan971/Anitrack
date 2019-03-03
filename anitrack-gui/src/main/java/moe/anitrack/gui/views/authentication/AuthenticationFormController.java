@@ -4,9 +4,9 @@ import static moe.tristan.easyfxml.util.Buttons.setOnClick;
 import static moe.tristan.easyfxml.util.Properties.whenPropertyIsSet;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -53,7 +53,7 @@ public class AuthenticationFormController implements FxmlController {
     private final AuthenticationFormFieldComponent formFieldComponent;
 
     private final Property<ThirdpartyService> serviceRequestedProp = new SimpleObjectProperty<>();
-    private final Property<Consumer<Map<String, String>>> fieldsValuesCallbackProperty = new SimpleObjectProperty<>();
+    private final Map<String, String> submittedValues = new HashMap<>();
 
     public AuthenticationFormController(EasyFxml easyFxml, AuthenticationFormFieldComponent formFieldComponent) {
         this.easyFxml = easyFxml;
@@ -64,7 +64,7 @@ public class AuthenticationFormController implements FxmlController {
     public void initialize() {
         LOGGER.debug("Requested authentication form...");
         whenPropertyIsSet(serviceRequestedProp, this::serviceIsSet);
-        whenPropertyIsSet(fieldsValuesCallbackProperty, () -> setOnClick(submitButton, this::submit));
+        setOnClick(submitButton, this::submit);
     }
 
     public void setServiceRequested(ThirdpartyService serviceRequested) {
@@ -86,7 +86,7 @@ public class AuthenticationFormController implements FxmlController {
     }
 
     private void submit() {
-        LOGGER.info("Tried submitting");
+        LOGGER.info("Form submitted: {}", submittedValues);
     }
 
     private List<Pane> buildAuthenticationFields(ThirdpartyService service) {
@@ -104,7 +104,10 @@ public class AuthenticationFormController implements FxmlController {
                 Pane.class,
                 AuthenticationFormFieldController.class
         );
-        fieldLoad.afterControllerLoaded(fieldController -> fieldController.setField(field));
+        fieldLoad.afterControllerLoaded(fieldController -> {
+            fieldController.setField(field);
+            fieldController.onFieldValueUpdate(fieldValue -> submittedValues.put(field.getFieldName(), fieldValue));
+        });
         return fieldLoad.orExceptionPane().get();
     }
 

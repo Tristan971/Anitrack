@@ -3,15 +3,15 @@ package moe.anitrack.gui.views.authentication.field;
 import static moe.tristan.easyfxml.util.Properties.whenPropertyIsSet;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
-import java.util.function.Supplier;
+import java.util.function.Consumer;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -30,6 +30,7 @@ public class AuthenticationFormFieldController implements FxmlController {
     private HBox fieldBox;
 
     private Property<AuthenticationField> fieldProperty = new SimpleObjectProperty<>();
+    private Property<String> fieldValueProperty = new SimpleStringProperty();
 
     @Override
     public void initialize() {
@@ -40,12 +41,17 @@ public class AuthenticationFormFieldController implements FxmlController {
         this.fieldProperty.setValue(newValue);
     }
 
+    public void onFieldValueUpdate(Consumer<String> fieldValue) {
+        whenPropertyIsSet(fieldValueProperty, fieldValue);
+    }
+
     private void displayField() {
         final AuthenticationField field = fieldProperty.getValue();
         fieldName.setText(field.getFieldName());
 
-        Supplier<Node> typeOfFieldToAdd = field.isPasswordLike() ? PasswordField::new : TextField::new;
-        fieldBox.getChildren().setAll(typeOfFieldToAdd.get());
+        TextField fieldInput = field.isPasswordLike() ? new PasswordField() : new TextField();
+        fieldValueProperty.bind(fieldInput.textProperty());
+        fieldBox.getChildren().setAll(fieldInput);
     }
 
 }
