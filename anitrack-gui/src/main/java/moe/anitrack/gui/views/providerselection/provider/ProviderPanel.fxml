@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <BorderPane stylesheets="@/css/style.css" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" styleClass="hoverableButton-dark"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="moe.anitrack.gui.views.providerselection.ProviderSelectPanelController">
+            fx:controller="moe.anitrack.gui.views.providerselection.provider.ProviderPanelController">
     <left>
         <ImageView fx:id="logo" fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
             <BorderPane.margin>

@@ -1,4 +1,4 @@
-package moe.anitrack.gui.views.providerselection;
+package moe.anitrack.gui.views.providerselection.provider;
 
 import static moe.tristan.easyfxml.util.Properties.whenPropertyIsSet;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
@@ -22,9 +22,9 @@ import moe.tristan.easyfxml.api.FxmlController;
 
 @Component
 @Scope(scopeName = SCOPE_PROTOTYPE)
-public class ProviderSelectPanelController implements FxmlController {
+public class ProviderPanelController implements FxmlController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProviderSelectPanelController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProviderPanelController.class);
 
     @FXML
     private ImageView logo;
