@@ -20,7 +20,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.layout.VBox;
 
 import moe.anitrack.gui.views.authentication.field.AuthenticationFormFieldCell;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
@@ -35,9 +34,6 @@ public class AuthenticationFormController extends ComponentListViewFxmlControlle
 
     @FXML
     private Label serviceName;
-
-    @FXML
-    private VBox fieldsBox;
 
     @FXML
     public Button submitButton;
