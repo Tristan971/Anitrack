@@ -62,6 +62,7 @@ public class ProviderSelectionController implements FxmlController {
                 Stage formStage = new Stage();
                 formStage.setTitle(thirdparty.getChoiceInfo().getName());
                 formStage.setScene(new Scene(providerAuthenticationForm.orExceptionPane().get()));
+                formStage.sizeToScene();
                 formStage.show();
             }));
             return load.getNode().getOrElseGet(ExceptionHandler::fromThrowable);
