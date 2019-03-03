@@ -1,4 +1,4 @@
-package moe.anitrack.gui.views.authentication.field;
+package moe.anitrack.gui.view.views.authentication.field;
 
 import static moe.tristan.easyfxml.util.Properties.whenPropertyIsSet;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;

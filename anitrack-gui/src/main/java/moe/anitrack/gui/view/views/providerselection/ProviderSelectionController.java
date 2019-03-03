@@ -1,4 +1,4 @@
-package moe.anitrack.gui.views.providerselection;
+package moe.anitrack.gui.view.views.providerselection;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import moe.anitrack.gui.views.authentication.AuthenticationFormComponent;
-import moe.anitrack.gui.views.authentication.AuthenticationFormController;
-import moe.anitrack.gui.views.providerselection.provider.ProviderPanelComponent;
-import moe.anitrack.gui.views.providerselection.provider.ProviderPanelController;
+import moe.anitrack.gui.view.views.authentication.AuthenticationFormComponent;
+import moe.anitrack.gui.view.views.authentication.AuthenticationFormController;
+import moe.anitrack.gui.view.views.providerselection.provider.ProviderPanelComponent;
+import moe.anitrack.gui.view.views.providerselection.provider.ProviderPanelController;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
 import moe.tristan.easyfxml.EasyFxml;
 import moe.tristan.easyfxml.api.FxmlController;

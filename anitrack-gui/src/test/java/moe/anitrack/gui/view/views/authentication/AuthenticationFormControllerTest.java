@@ -1,4 +1,4 @@
-package moe.anitrack.gui.views.authentication;
+package moe.anitrack.gui.view.views.authentication;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

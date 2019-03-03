@@ -1,4 +1,4 @@
-package moe.anitrack.gui.views.authentication.field;
+package moe.anitrack.gui.view.views.authentication;
 
 import org.springframework.stereotype.Component;
 
@@ -7,16 +7,16 @@ import moe.tristan.easyfxml.api.FxmlFile;
 import moe.tristan.easyfxml.api.FxmlNode;
 
 @Component
-public class AuthenticationFormFieldComponent implements FxmlNode {
+public class AuthenticationFormComponent implements FxmlNode {
 
     @Override
     public FxmlFile getFile() {
-        return () -> "authentication/field/AuthenticationFormField.fxml";
+        return () -> "authentication/AuthenticationForm.fxml";
     }
 
     @Override
     public Class<? extends FxmlController> getControllerClass() {
-        return AuthenticationFormFieldController.class;
+        return AuthenticationFormController.class;
     }
 
 }

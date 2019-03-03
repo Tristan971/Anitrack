@@ -1,4 +1,4 @@
-package moe.anitrack.gui.views.providerselection.provider;
+package moe.anitrack.gui.view.views.providerselection.provider;
 
 import static moe.tristan.easyfxml.util.Properties.whenPropertyIsSet;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;

@@ -1,4 +1,4 @@
-package moe.anitrack.gui.views.providerselection;
+package moe.anitrack.gui.view.views.providerselection;
 
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package moe.anitrack.gui.views.main;
+package moe.anitrack.gui.view.views.main;
 
 import org.springframework.stereotype.Component;
 

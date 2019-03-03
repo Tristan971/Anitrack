@@ -1,4 +1,4 @@
-package moe.anitrack.gui.views;
+package moe.anitrack.gui.view.views;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javafx.stage.Stage;
 
 import moe.anitrack.core.thirdparties.choice.ThirdpartySelectionService;
-import moe.anitrack.gui.views.providerselection.ProviderSelectionComponent;
+import moe.anitrack.gui.view.views.providerselection.ProviderSelectionComponent;
 import moe.tristan.easyfxml.FxUiManager;
 import moe.tristan.easyfxml.api.FxmlNode;
 

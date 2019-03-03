@@ -1,4 +1,4 @@
-package moe.anitrack.gui.views.authentication;
+package moe.anitrack.gui.view.views.authentication;
 
 import static moe.tristan.easyfxml.util.Buttons.setOnClick;
 import static moe.tristan.easyfxml.util.Nodes.hideAndResizeParentIf;
@@ -27,8 +27,8 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-import moe.anitrack.gui.views.authentication.field.AuthenticationFormFieldComponent;
-import moe.anitrack.gui.views.authentication.field.AuthenticationFormFieldController;
+import moe.anitrack.gui.view.views.authentication.field.AuthenticationFormFieldComponent;
+import moe.anitrack.gui.view.views.authentication.field.AuthenticationFormFieldController;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
 import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
 import moe.tristan.easyfxml.EasyFxml;
