@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
-<BorderPane stylesheets="@/css/style.css" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" styleClass="hoverableButton"
+<BorderPane stylesheets="@/css/style.css" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" styleClass="hoverableButton-dark"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="moe.anitrack.gui.views.providerselection.ProviderSelectPanelController">
     <left>

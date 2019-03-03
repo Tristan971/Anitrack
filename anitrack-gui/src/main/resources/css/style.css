@@ -1,64 +1,76 @@
 .root {
-    -fx-background: -fx-base;
-    -fx-background-dark: rgb(43, 43, 48);
+  -fx-background: -fx-base;
+  -fx-background-dark: rgb(43, 43, 48);
 
-    -fx-accent: rgb(230, 241, 255);
-    -fx-focus-color: rgb(55, 122, 224);
+  -fx-accent: rgb(230, 241, 255);
+  -fx-focus-color: rgb(55, 122, 224);
 }
 
 .dark {
-    -fx-base: -fx-background-dark;
-    -fx-background-color: -fx-background-dark;
+  -fx-base: -fx-background-dark;
+  -fx-background-color: -fx-background-dark;
 }
 
 .transparent-dark-background-opacity {
-    -fx-background-color: rgba(43, 43, 48, 0.85);
+  -fx-background-color: rgba(43, 43, 48, 0.85);
 }
 
 .text-area {
-    -fx-stroke-width: 1;
-    -fx-background-color: snow;
+  -fx-stroke-width: 1;
+  -fx-background-color: snow;
 }
 
 .text-area .scroll-pane {
-    -fx-background-color: transparent;
+  -fx-background-color: transparent;
 }
 
-.text-area .scroll-pane .viewport{
-    -fx-background-color: transparent;
+.text-area .scroll-pane .viewport {
+  -fx-background-color: transparent;
 }
 
-.text-area .scroll-pane .content{
-    -fx-background-color: transparent;
+.text-area .scroll-pane .content {
+  -fx-background-color: transparent;
 }
 
 .hoverableButton:hover {
-    -fx-background-color: #ebebeb;
+  -fx-background-color: #EBEBEB;
 }
 
 .hoverableButton {
-    -fx-background-color: #F4F4F4;
+  -fx-background-color: #F4F4F4;
 }
 
 .hoverableButton:pressed {
-    -fx-background-color: #adadad;
+  -fx-background-color: #ADADAD;
+}
+
+.hoverableButton-dark {
+  -fx-background-color: rgb(55, 55, 61);
+}
+
+.hoverableButton-dark:hover {
+  -fx-background-color: rgb(68, 68, 75);
+}
+
+.hoverableButton-dark:pressed {
+  -fx-background-color: rgb(29, 29, 32);
 }
 
 .hyperlink {
-    -fx-text-fill: #29618b !important;
+  -fx-text-fill: #29618B !important;
 }
 
 .clickable-hyperlink {
-    -fx-fill: rgb(55, 122, 224);
-    -fx-padding: 0;
+  -fx-fill: rgb(55, 122, 224);
+  -fx-padding: 0;
 }
 
 .clickable-hyperlink:hover {
-    -fx-fill: rgb(61, 139, 255);
-    -fx-underline: true;
+  -fx-fill: rgb(61, 139, 255);
+  -fx-underline: true;
 }
 
 .clickable-hyperlink:pressed {
-    -fx-fill: rgb(40, 92, 168);
-    -fx-underline: true;
+  -fx-fill: rgb(40, 92, 168);
+  -fx-underline: true;
 }

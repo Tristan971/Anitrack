@@ -50,8 +50,8 @@ public class LocalDbService implements ThirdpartyService<MediaInfo> {
     public ThirdpartyServiceChoiceInfo getChoiceInfo() {
         return ImmutableThirdpartyServiceChoiceInfo
                 .builder()
-                .name("Local database")
-                .logoUrl(getClass().getClassLoader().getResource("cloud.png"))
+                .name("Locally only")
+                .logoUrl(getClass().getClassLoader().getResource("local.png"))
                 .build();
     }
 
