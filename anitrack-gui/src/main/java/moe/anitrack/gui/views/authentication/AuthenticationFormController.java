@@ -1,12 +1,14 @@
 package moe.anitrack.gui.views.authentication;
 
 import static moe.tristan.easyfxml.util.Buttons.setOnClick;
+import static moe.tristan.easyfxml.util.Nodes.hideAndResizeParentIf;
 import static moe.tristan.easyfxml.util.Properties.whenPropertyIsSet;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -14,7 +16,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -53,6 +57,8 @@ public class AuthenticationFormController implements FxmlController {
     private final AuthenticationFormFieldComponent formFieldComponent;
 
     private final Property<ThirdpartyService> serviceRequestedProp = new SimpleObjectProperty<>();
+
+    private final BooleanProperty submitting = new SimpleBooleanProperty(false);
     private final Map<String, String> submittedValues = new HashMap<>();
 
     public AuthenticationFormController(EasyFxml easyFxml, AuthenticationFormFieldComponent formFieldComponent) {
@@ -65,6 +71,8 @@ public class AuthenticationFormController implements FxmlController {
         LOGGER.debug("Requested authentication form...");
         whenPropertyIsSet(serviceRequestedProp, this::serviceIsSet);
         setOnClick(submitButton, this::submit);
+
+        hideAndResizeParentIf(loginProgressIndicator, submitting);
     }
 
     public void setServiceRequested(ThirdpartyService serviceRequested) {
@@ -86,7 +94,16 @@ public class AuthenticationFormController implements FxmlController {
     }
 
     private void submit() {
-        LOGGER.info("Form submitted: {}", submittedValues);
+        CompletableFuture.runAsync(
+                () -> serviceRequestedProp.getValue().getAuthenticationService().authenticateWith(submittedValues)
+        ).whenCompleteAsync((success, error) -> {
+            if (error != null) {
+                LOGGER.error("Cannot authenticate!", error);
+                submitting.set(false);
+            } else {
+
+            }
+        });
     }
 
     private List<Pane> buildAuthenticationFields(ThirdpartyService service) {
@@ -105,8 +122,9 @@ public class AuthenticationFormController implements FxmlController {
                 AuthenticationFormFieldController.class
         );
         fieldLoad.afterControllerLoaded(fieldController -> {
+            LOGGER.debug("Initializing authentication form field for: {}", field);
             fieldController.setField(field);
-            fieldController.onFieldValueUpdate(fieldValue -> submittedValues.put(field.getFieldName(), fieldValue));
+            fieldController.setOnFieldUpdated(fieldValue -> submittedValues.put(field.getFieldName(), fieldValue));
         });
         return fieldLoad.orExceptionPane().get();
     }

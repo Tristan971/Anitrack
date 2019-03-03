@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -30,7 +29,8 @@ public class AuthenticationFormFieldController implements FxmlController {
     private HBox fieldBox;
 
     private Property<AuthenticationField> fieldProperty = new SimpleObjectProperty<>();
-    private Property<String> fieldValueProperty = new SimpleStringProperty();
+
+    private Consumer<String> fieldListener;
 
     @Override
     public void initialize() {
@@ -41,8 +41,8 @@ public class AuthenticationFormFieldController implements FxmlController {
         this.fieldProperty.setValue(newValue);
     }
 
-    public void onFieldValueUpdate(Consumer<String> fieldValue) {
-        whenPropertyIsSet(fieldValueProperty, fieldValue);
+    public void setOnFieldUpdated(Consumer<String> fieldValue) {
+        this.fieldListener = fieldValue;
     }
 
     private void displayField() {
@@ -50,7 +50,7 @@ public class AuthenticationFormFieldController implements FxmlController {
         fieldName.setText(field.getFieldName());
 
         TextField fieldInput = field.isPasswordLike() ? new PasswordField() : new TextField();
-        fieldValueProperty.bind(fieldInput.textProperty());
+        fieldInput.textProperty().addListener((o, prev, cur) -> fieldListener.accept(cur));
         fieldBox.getChildren().setAll(fieldInput);
     }
 

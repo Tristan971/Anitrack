@@ -45,28 +45,33 @@ public class ProviderSelectionController implements FxmlController {
 
     @Override
     public void initialize() {
-        thirdparties.stream().map(thirdparty -> {
-            final FxmlLoadResult<Pane, ProviderPanelController> load = easyFxml.loadNode(
-                    providerPanelComponent,
-                    Pane.class,
-                    ProviderPanelController.class
-            );
-            load.afterControllerLoaded(controller -> controller.setPresentedService(thirdparty));
-            load.afterNodeLoaded(providerPane -> providerPane.setOnMouseClicked(clickEvent -> {
-                final FxmlLoadResult<Pane, AuthenticationFormController> providerAuthenticationForm = easyFxml.loadNode(
-                        authenticationFormComponent,
-                        Pane.class,
-                        AuthenticationFormController.class
-                );
-                providerAuthenticationForm.afterControllerLoaded(formController -> formController.setServiceRequested(thirdparty));
-                Stage formStage = new Stage();
-                formStage.setTitle(thirdparty.getChoiceInfo().getName());
-                formStage.setScene(new Scene(providerAuthenticationForm.orExceptionPane().get()));
-                formStage.sizeToScene();
-                formStage.show();
-            }));
-            return load.getNode().getOrElseGet(ExceptionHandler::fromThrowable);
-        }).forEach(providerPanels.getChildren()::add);
+        thirdparties.stream().map(this::buildProviderPane).forEach(providerPanels.getChildren()::add);
+    }
+
+    private Pane buildProviderPane(ThirdpartyService thirdparty) {
+        final FxmlLoadResult<Pane, ProviderPanelController> load = easyFxml.loadNode(
+                providerPanelComponent,
+                Pane.class,
+                ProviderPanelController.class
+        );
+        load.afterControllerLoaded(controller -> controller.setPresentedService(thirdparty));
+        load.afterNodeLoaded(providerPane -> providerPane.setOnMouseClicked(clickEvent -> openServiceAuthenticationWindow(thirdparty)));
+        return load.getNode().getOrElseGet(ExceptionHandler::fromThrowable);
+    }
+
+    private void openServiceAuthenticationWindow(ThirdpartyService thirdparty) {
+        final FxmlLoadResult<Pane, AuthenticationFormController> providerAuthenticationForm = easyFxml.loadNode(
+                authenticationFormComponent,
+                Pane.class,
+                AuthenticationFormController.class
+        );
+        providerAuthenticationForm.afterControllerLoaded(formController -> formController.setServiceRequested(thirdparty));
+        Stage formStage = new Stage();
+        formStage.setTitle(thirdparty.getChoiceInfo().getName());
+        formStage.setScene(new Scene(providerAuthenticationForm.orExceptionPane().get()));
+        formStage.sizeToScene();
+        formStage.show();
+        formStage.toFront();
     }
 
 }
