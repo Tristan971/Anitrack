@@ -79,6 +79,7 @@ public class AuthenticationFormController implements FxmlController, OwnStageAwa
 
         hideAndResizeParentIf(submitButton, submitting.not());
         hideAndResizeParentIf(loginProgressIndicator, submitting);
+        fieldsBox.disableProperty().bind(submitting);
     }
 
     public void setServiceRequested(ThirdpartyService serviceRequested) {
