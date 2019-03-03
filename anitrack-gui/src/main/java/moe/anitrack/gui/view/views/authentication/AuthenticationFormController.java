@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -26,7 +27,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import moe.anitrack.gui.view.util.OwnStageAware;
 import moe.anitrack.gui.view.views.authentication.field.AuthenticationFormFieldComponent;
 import moe.anitrack.gui.view.views.authentication.field.AuthenticationFormFieldController;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
@@ -37,7 +40,7 @@ import moe.tristan.easyfxml.model.fxml.FxmlLoadResult;
 
 @Component
 @Scope(scopeName = SCOPE_PROTOTYPE)
-public class AuthenticationFormController implements FxmlController {
+public class AuthenticationFormController implements FxmlController, OwnStageAware {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationFormController.class);
 
@@ -61,6 +64,8 @@ public class AuthenticationFormController implements FxmlController {
     private final BooleanProperty submitting = new SimpleBooleanProperty(false);
     private final Map<String, String> submittedValues = new HashMap<>();
 
+    private Stage formStage;
+
     public AuthenticationFormController(EasyFxml easyFxml, AuthenticationFormFieldComponent formFieldComponent) {
         this.easyFxml = easyFxml;
         this.formFieldComponent = formFieldComponent;
@@ -72,11 +77,17 @@ public class AuthenticationFormController implements FxmlController {
         whenPropertyIsSet(serviceRequestedProp, this::serviceIsSet);
         setOnClick(submitButton, this::submit);
 
+        hideAndResizeParentIf(submitButton, submitting.not());
         hideAndResizeParentIf(loginProgressIndicator, submitting);
     }
 
     public void setServiceRequested(ThirdpartyService serviceRequested) {
         this.serviceRequestedProp.setValue(serviceRequested);
+    }
+
+    @Override
+    public void setOwnStage(Stage stage) {
+        this.formStage = stage;
     }
 
     private void serviceIsSet() {
@@ -94,6 +105,7 @@ public class AuthenticationFormController implements FxmlController {
     }
 
     private void submit() {
+        submitting.set(true);
         CompletableFuture.runAsync(
                 () -> serviceRequestedProp.getValue().getAuthenticationService().authenticateWith(submittedValues)
         ).whenCompleteAsync((success, error) -> {
@@ -101,9 +113,10 @@ public class AuthenticationFormController implements FxmlController {
                 LOGGER.error("Cannot authenticate!", error);
                 submitting.set(false);
             } else {
-
+                LOGGER.info("Authentication succeeded! Closing form stage.");
+                formStage.close();
             }
-        });
+        }, Platform::runLater);
     }
 
     private List<Pane> buildAuthenticationFields(ThirdpartyService service) {
