@@ -3,8 +3,8 @@ package moe.anitrack.thirdparties.common;
 import java.util.List;
 import java.util.Map;
 
-import moe.anitrack.thirdparties.common.model.authentication.post.AuthenticationResult;
-import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationResult;
 
 public interface ThirdpartyAuthenticationService {
 

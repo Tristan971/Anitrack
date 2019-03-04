@@ -7,9 +7,8 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
-import moe.anitrack.thirdparties.common.model.authentication.post.AuthenticationResult;
-import moe.anitrack.thirdparties.common.model.authentication.post.ImmutableAuthenticationResult;
-import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationResult;
 
 @Component
 public class LocalDbAuthService implements ThirdpartyAuthenticationService {
@@ -21,10 +20,7 @@ public class LocalDbAuthService implements ThirdpartyAuthenticationService {
 
     @Override
     public AuthenticationResult authenticateWith(Map<AuthenticationField, String> authenticationValues) {
-        return ImmutableAuthenticationResult
-                .builder()
-                .isSuccessful(true)
-                .build();
+        return AuthenticationResult.of(authenticationValues);
     }
 
 }

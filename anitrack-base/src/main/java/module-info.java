@@ -10,5 +10,6 @@ open module anitrack.base {
 
     requires transitive spring.boot.autoconfigure;
     requires transitive org.immutables.value;
+    requires transitive com.fasterxml.jackson.databind;
 
 }

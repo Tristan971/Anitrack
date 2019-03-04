@@ -33,7 +33,7 @@ import javafx.stage.Stage;
 import moe.anitrack.gui.view.util.OwnStageAware;
 import moe.anitrack.gui.view.views.authentication.field.AuthenticationFormFieldComponent;
 import moe.anitrack.gui.view.views.authentication.field.AuthenticationFormFieldController;
-import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
 import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
 import moe.tristan.easyfxml.EasyFxml;
 import moe.tristan.easyfxml.api.FxmlController;

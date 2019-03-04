@@ -29,9 +29,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import moe.anitrack.base.util.form.FormEmailValidator;
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
-import moe.anitrack.thirdparties.common.model.authentication.post.AuthenticationResult;
-import moe.anitrack.thirdparties.common.model.authentication.post.ImmutableAuthenticationResult;
-import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationResult;
 import moe.anitrack.thirdparties.thirdparty.kitsu.objects.authentication.ImmutableOauthPasswordAuthenticationResponse;
 import moe.anitrack.thirdparties.thirdparty.kitsu.objects.authentication.OauthPasswordAuthenticationResponse;
 
@@ -69,23 +68,13 @@ public class KitsuAuthenticationService implements ThirdpartyAuthenticationServi
 
     @Override
     public AuthenticationResult authenticateWith(Map<AuthenticationField, String> authenticationValues) {
-        final String email = authenticationValues.get(emailField);
-        final String password = authenticationValues.get(passwordField);
-
         try {
+            final String email = authenticationValues.get(emailField);
+            final String password = authenticationValues.get(passwordField);
             authenticateWith(email, password);
-            return ImmutableAuthenticationResult
-                    .builder()
-                    .isSuccessful(true)
-                    .loggedInAs(email)
-                    .build();
-        } catch (IOException e) {
-            LOGGER.error("Could not log in!", e);
-            return ImmutableAuthenticationResult
-                    .builder()
-                    .isSuccessful(false)
-                    .error(e.getMessage())
-                    .build();
+            return AuthenticationResult.of(authenticationValues);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

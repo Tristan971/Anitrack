@@ -1,4 +1,4 @@
-package moe.anitrack.thirdparties.common.model.authentication.pre;
+package moe.anitrack.thirdparties.common.model.authentication;
 
 import java.util.Optional;
 import java.util.function.Predicate;

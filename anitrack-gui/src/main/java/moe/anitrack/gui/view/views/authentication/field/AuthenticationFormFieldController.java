@@ -16,7 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
-import moe.anitrack.thirdparties.common.model.authentication.pre.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
 import moe.tristan.easyfxml.api.FxmlController;
 
 @Component

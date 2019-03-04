@@ -5,14 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import moe.anitrack.core.model.thirdparties.ThirdpartySelectionService;
-import moe.anitrack.gui.view.views.authentication.AuthenticationFormComponent;
-import moe.anitrack.gui.view.views.authentication.AuthenticationFormController;
+import moe.anitrack.gui.operations.AuthenticateWithThirdpartyOperation;
 import moe.anitrack.gui.view.views.providerselection.provider.ProviderPanelComponent;
 import moe.anitrack.gui.view.views.providerselection.provider.ProviderPanelController;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
@@ -28,23 +24,20 @@ public class ProviderSelectionController implements FxmlController {
     private VBox providerPanels;
 
     private final EasyFxml easyFxml;
-    private final ProviderPanelComponent providerPanelComponent;
     private final List<ThirdpartyService> thirdparties;
-    private final AuthenticationFormComponent authenticationFormComponent;
-    private final ThirdpartySelectionService thirdpartySelectionService;
+    private final ProviderPanelComponent providerPanelComponent;
+    private final AuthenticateWithThirdpartyOperation authenticateWithThirdpartyOperation;
 
     public ProviderSelectionController(
             EasyFxml easyFxml,
-            ProviderPanelComponent providerPanelComponent,
             List<ThirdpartyService> thirdparties,
-            AuthenticationFormComponent authenticationFormComponent,
-            ThirdpartySelectionService thirdpartySelectionService
+            ProviderPanelComponent providerPanelComponent,
+            AuthenticateWithThirdpartyOperation authenticateWithThirdpartyOperation
     ) {
         this.easyFxml = easyFxml;
-        this.providerPanelComponent = providerPanelComponent;
         this.thirdparties = thirdparties;
-        this.authenticationFormComponent = authenticationFormComponent;
-        this.thirdpartySelectionService = thirdpartySelectionService;
+        this.providerPanelComponent = providerPanelComponent;
+        this.authenticateWithThirdpartyOperation = authenticateWithThirdpartyOperation;
     }
 
     @Override
@@ -58,29 +51,13 @@ public class ProviderSelectionController implements FxmlController {
                 Pane.class,
                 ProviderPanelController.class
         );
-        load.afterControllerLoaded(controller -> controller.setPresentedService(thirdparty));
-        load.afterNodeLoaded(providerPane -> providerPane.setOnMouseClicked(clickEvent -> openServiceAuthenticationWindow(thirdparty)));
-        return load.getNode().getOrElseGet(ExceptionHandler::fromThrowable);
-    }
 
-    private void openServiceAuthenticationWindow(ThirdpartyService thirdparty) {
-        final FxmlLoadResult<Pane, AuthenticationFormController> providerAuthenticationForm = easyFxml.loadNode(
-                authenticationFormComponent,
-                Pane.class,
-                AuthenticationFormController.class
-        );
-        Stage formStage = new Stage();
-        providerAuthenticationForm.afterControllerLoaded(formController -> {
-            formController.setServiceInfo(thirdparty.getChoiceInfo());
-            formController.setFormFields(thirdparty.getAuthenticationService().getAuthenticationFields());
-            formController.setOwnStage(formStage);
-            formController.setSubmit(form -> thirdpartySelectionService.tryAuthenticateWith(thirdparty, form));
-        });
-        formStage.setTitle(thirdparty.getChoiceInfo().getName());
-        formStage.setScene(new Scene(providerAuthenticationForm.orExceptionPane().get()));
-        formStage.sizeToScene();
-        formStage.show();
-        formStage.toFront();
+        load.afterControllerLoaded(controller -> controller.setPresentedService(thirdparty));
+        load.afterNodeLoaded(providerPane -> providerPane.setOnMouseClicked(
+                clickEvent -> authenticateWithThirdpartyOperation.authenticateWithFormFor(thirdparty)
+        ));
+
+        return load.getNode().getOrElseGet(ExceptionHandler::fromThrowable);
     }
 
 }
