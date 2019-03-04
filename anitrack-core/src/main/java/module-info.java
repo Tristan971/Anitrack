@@ -1,7 +1,6 @@
 open module anitrack.core {
     exports moe.anitrack.core;
-    exports moe.anitrack.core.thirdparties;
-    exports moe.anitrack.core.thirdparties.choice;
+    exports moe.anitrack.core.model.thirdparties;
 
     requires anitrack.base;
     requires anitrack.persistence;

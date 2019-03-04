@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import moe.anitrack.core.thirdparties.choice.ThirdpartySelectionService;
+import moe.anitrack.core.model.thirdparties.ThirdpartySelectionService;
 
 @ContextConfiguration(classes = AnitrackConfiguration.class)
 @RunWith(SpringRunner.class)

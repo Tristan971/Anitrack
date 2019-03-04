@@ -1,4 +1,4 @@
-package moe.anitrack.core.thirdparties.choice;
+package moe.anitrack.core.model.thirdparties;
 
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
@@ -13,7 +13,9 @@ public class ThirdpartySelectionService {
 
     private final AtomicReference<ThirdpartyChoice> serviceChoice = new AtomicReference<>();
 
-    public void tryAuthenticateWith(final ThirdpartyService service, final Map<AuthenticationField, String>)
+    public void tryAuthenticateWith(final ThirdpartyService service, final Map<AuthenticationField, String> authenticationForm) {
+
+    }
 
     public boolean isCurrentlySet() {
         return serviceChoice.get() != null;

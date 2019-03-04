@@ -8,6 +8,7 @@ open module anitrack.base {
 
     requires spring.context;
 
+    requires transitive spring.boot.autoconfigure;
     requires transitive org.immutables.value;
 
 }

@@ -1,4 +1,4 @@
-package moe.anitrack.core.thirdparties;
+package moe.anitrack.core.model.thirdparties;
 
 import java.util.List;
 import java.util.stream.Collectors;

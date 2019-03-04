@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import moe.anitrack.base.BaseConfiguration;
-import moe.anitrack.core.thirdparties.ThirdpartiesConfiguration;
+import moe.anitrack.core.model.thirdparties.ThirdpartiesConfiguration;
 import moe.anitrack.persistence.PersistenceConfiguration;
 import moe.anitrack.server.ServerConfiguration;
 

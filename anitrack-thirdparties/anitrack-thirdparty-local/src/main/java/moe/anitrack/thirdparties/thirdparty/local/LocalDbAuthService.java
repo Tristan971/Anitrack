@@ -20,7 +20,7 @@ public class LocalDbAuthService implements ThirdpartyAuthenticationService {
     }
 
     @Override
-    public AuthenticationResult authenticateWith(Map<String, String> authenticationValues) {
+    public AuthenticationResult authenticateWith(Map<AuthenticationField, String> authenticationValues) {
         return ImmutableAuthenticationResult
                 .builder()
                 .isSuccessful(true)

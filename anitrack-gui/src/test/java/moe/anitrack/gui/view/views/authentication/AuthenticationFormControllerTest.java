@@ -59,7 +59,10 @@ public class AuthenticationFormControllerTest extends FxNodeTest {
         when(choiceInfo.getName()).thenReturn(SERVICE_NAME);
 
         final FxmlLoadResult<Pane, AuthenticationFormController> loadResult = easyFxml.loadNode(formComponent, Pane.class, AuthenticationFormController.class);
-        loadResult.afterControllerLoaded(authController -> authController.setServiceRequested(service));
+        loadResult.afterControllerLoaded(authController -> {
+            authController.setServiceInfo(service.getChoiceInfo());
+            authController.setFormFields(service.getAuthenticationService().getAuthenticationFields());
+        });
         component = loadResult.getNode().getOrNull();
     }
 

@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import moe.anitrack.core.thirdparties.choice.ThirdpartySelectionService;
+import moe.anitrack.core.model.thirdparties.ThirdpartySelectionService;
 import moe.anitrack.gui.view.views.authentication.AuthenticationFormComponent;
 import moe.anitrack.gui.view.views.authentication.AuthenticationFormController;
 import moe.anitrack.gui.view.views.providerselection.provider.ProviderPanelComponent;
@@ -74,6 +74,7 @@ public class ProviderSelectionController implements FxmlController {
             formController.setServiceInfo(thirdparty.getChoiceInfo());
             formController.setFormFields(thirdparty.getAuthenticationService().getAuthenticationFields());
             formController.setOwnStage(formStage);
+            formController.setSubmit(form -> thirdpartySelectionService.tryAuthenticateWith(thirdparty, form));
         });
         formStage.setTitle(thirdparty.getChoiceInfo().getName());
         formStage.setScene(new Scene(providerAuthenticationForm.orExceptionPane().get()));

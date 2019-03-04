@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javafx.stage.Stage;
 
-import moe.anitrack.core.thirdparties.choice.ThirdpartySelectionService;
-import moe.anitrack.gui.view.views.providerselection.ProviderSelectionComponent;
+import moe.anitrack.gui.view.views.main.MainComponent;
 import moe.tristan.easyfxml.FxUiManager;
 import moe.tristan.easyfxml.api.FxmlNode;
 
@@ -18,18 +17,11 @@ public class AnitrackUiManager extends FxUiManager {
     private static final Logger LOGGER = LoggerFactory.getLogger(AnitrackUiManager.class);
 
     private final Environment environment;
-    private final ThirdpartySelectionService thirdpartySelectionService;
+    private final MainComponent mainComponent;
 
-    private final ProviderSelectionComponent providerSelectionComponent;
-
-    protected AnitrackUiManager(
-            Environment environment,
-            ThirdpartySelectionService thirdpartySelectionService,
-            ProviderSelectionComponent providerSelectionComponent
-    ) {
+    protected AnitrackUiManager(Environment environment, MainComponent mainComponent) {
         this.environment = environment;
-        this.thirdpartySelectionService = thirdpartySelectionService;
-        this.providerSelectionComponent = providerSelectionComponent;
+        this.mainComponent = mainComponent;
     }
 
     @Override
@@ -43,10 +35,7 @@ public class AnitrackUiManager extends FxUiManager {
 
     @Override
     protected FxmlNode mainComponent() {
-        if (thirdpartySelectionService.isCurrentlySet()) {
-            return null;
-        }
-        return providerSelectionComponent;
+        return mainComponent;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package moe.anitrack.core.thirdparties;
+package moe.anitrack.core.model.thirdparties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

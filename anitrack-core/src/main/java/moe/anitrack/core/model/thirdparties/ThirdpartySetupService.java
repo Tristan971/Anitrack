@@ -1,4 +1,4 @@
-package moe.anitrack.core.thirdparties.setup;
+package moe.anitrack.core.model.thirdparties;
 
 import org.springframework.stereotype.Component;
 

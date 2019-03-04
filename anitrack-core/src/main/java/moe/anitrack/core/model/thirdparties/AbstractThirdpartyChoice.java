@@ -1,4 +1,4 @@
-package moe.anitrack.core.thirdparties.choice;
+package moe.anitrack.core.model.thirdparties;
 
 import org.immutables.value.Value.Immutable;
 
