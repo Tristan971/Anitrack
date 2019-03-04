@@ -10,9 +10,9 @@ open module anitrack.core {
     requires anitrack.thirdparty.local;
 
     requires java.annotation;
-    requires slf4j.api;
 
     requires spring.beans;
     requires spring.context;
 
+    requires slf4j.api;
 }

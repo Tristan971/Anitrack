@@ -25,6 +25,12 @@ public class AnitrackUiManager extends FxUiManager {
     }
 
     @Override
+    public void startGui(Stage mainStage) {
+        super.startGui(mainStage);
+        mainStage.sizeToScene();
+    }
+
+    @Override
     protected String title() {
         return String.format(
                 "%s %s",
