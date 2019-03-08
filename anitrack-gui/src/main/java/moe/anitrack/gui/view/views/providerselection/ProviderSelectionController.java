@@ -2,6 +2,7 @@ package moe.anitrack.gui.view.views.providerselection;
 
 import java.util.List;
 
+import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.stereotype.Component;
 
 import javafx.fxml.FXML;
@@ -10,11 +11,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import moe.anitrack.core.model.events.authentication.AuthenticatedEvent;
 import moe.anitrack.gui.view.views.authentication.AuthenticationFormComponent;
 import moe.anitrack.gui.view.views.authentication.AuthenticationFormController;
 import moe.anitrack.gui.view.views.providerselection.provider.ProviderPanelComponent;
 import moe.anitrack.gui.view.views.providerselection.provider.ProviderPanelController;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationResult;
 import moe.tristan.easyfxml.EasyFxml;
 import moe.tristan.easyfxml.api.FxmlController;
 import moe.tristan.easyfxml.model.exception.ExceptionHandler;
@@ -30,17 +33,20 @@ public class ProviderSelectionController implements FxmlController {
     private final List<ThirdpartyService> thirdparties;
     private final ProviderPanelComponent providerPanelComponent;
     private final AuthenticationFormComponent authenticationFormComponent;
+    private final ApplicationEventMulticaster eventMulticaster;
 
     public ProviderSelectionController(
             EasyFxml easyFxml,
             List<ThirdpartyService> thirdparties,
             ProviderPanelComponent providerPanelComponent,
-            AuthenticationFormComponent authenticationFormComponent
+            AuthenticationFormComponent authenticationFormComponent,
+            ApplicationEventMulticaster eventMulticaster
     ) {
         this.easyFxml = easyFxml;
         this.thirdparties = thirdparties;
         this.providerPanelComponent = providerPanelComponent;
         this.authenticationFormComponent = authenticationFormComponent;
+        this.eventMulticaster = eventMulticaster;
     }
 
     @Override
@@ -77,7 +83,10 @@ public class ProviderSelectionController implements FxmlController {
             formController.setServiceInfo(service.getChoiceInfo());
             formController.setFormFields(service.getAuthenticationService().getAuthenticationFields());
             formController.setOwnStage(formStage);
-            formController.setSubmit(values ->  service.getAuthenticationService().authenticateWith(values));
+            formController.setSubmit(values -> {
+                final AuthenticationResult authResult = service.getAuthenticationService().authenticateWith(values);
+                eventMulticaster.multicastEvent(new AuthenticatedEvent(this, service, authResult));
+            });
             providerPanels.disableProperty().bind(formStage.showingProperty());
         });
 

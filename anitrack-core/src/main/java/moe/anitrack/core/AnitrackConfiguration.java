@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import moe.anitrack.base.BaseConfiguration;
+import moe.anitrack.core.model.events.EventsConfiguration;
 import moe.anitrack.core.model.thirdparties.ThirdpartiesConfiguration;
 import moe.anitrack.persistence.PersistenceConfiguration;
 import moe.anitrack.server.ServerConfiguration;
@@ -15,6 +16,7 @@ import moe.anitrack.server.ServerConfiguration;
 @Configuration
 @Import(value = {
         BaseConfiguration.class,
+        EventsConfiguration.class,
         PersistenceConfiguration.class,
         ServerConfiguration.class,
         ThirdpartiesConfiguration.class

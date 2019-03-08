@@ -8,6 +8,8 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
+
 @Entity(name = "authentication_info")
 public class AuthenticationInfo {
 
@@ -17,17 +19,13 @@ public class AuthenticationInfo {
 
     @Column(length = 2048, name = "authentication_data")
     @Convert(converter = JacksonMapToDatabaseConverter.class)
-    private Map<String, String> authenticationData = new HashMap<>();
+    private Map<AuthenticationField, String> authenticationData = new HashMap<>();
 
     public AuthenticationInfo() {
     }
 
-    public Map<String, String> getAuthenticationData() {
+    public Map<AuthenticationField, String> getAuthenticationData() {
         return authenticationData;
-    }
-
-    public void setAuthenticationData(Map<String, String> authenticationData) {
-        this.authenticationData = authenticationData;
     }
 
     public String getRelatingService() {
@@ -36,6 +34,10 @@ public class AuthenticationInfo {
 
     public void setRelatingService(String relatingService) {
         this.relatingService = relatingService;
+    }
+
+    public void setAuthenticationData(Map<AuthenticationField, String> authenticationData) {
+        this.authenticationData = authenticationData;
     }
 
 }

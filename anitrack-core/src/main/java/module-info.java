@@ -1,6 +1,7 @@
 open module anitrack.core {
     exports moe.anitrack.core;
     exports moe.anitrack.core.model.thirdparties;
+    exports moe.anitrack.core.model.events.authentication;
 
     requires anitrack.base;
     requires anitrack.persistence;
