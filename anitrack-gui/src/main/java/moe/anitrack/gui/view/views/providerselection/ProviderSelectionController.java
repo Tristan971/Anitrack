@@ -78,6 +78,7 @@ public class ProviderSelectionController implements FxmlController {
             formController.setFormFields(service.getAuthenticationService().getAuthenticationFields());
             formController.setOwnStage(formStage);
             formController.setSubmit(values ->  service.getAuthenticationService().authenticateWith(values));
+            providerPanels.disableProperty().bind(formStage.showingProperty());
         });
 
         formStage.setScene(new Scene(form.orExceptionPane().get()));
