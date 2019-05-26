@@ -22,8 +22,8 @@ import moe.anitrack.thirdparties.common.ThirdpartyService;
 import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
 import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
 import moe.tristan.easyfxml.EasyFxml;
+import moe.tristan.easyfxml.junit.FxNodeTest;
 import moe.tristan.easyfxml.model.fxml.FxmlLoadResult;
-import moe.tristan.easyfxml.test.FxNodeTest;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

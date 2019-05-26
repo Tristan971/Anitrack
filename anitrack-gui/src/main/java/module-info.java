@@ -3,7 +3,8 @@ open module anitrack.gui {
     requires anitrack.core;
     requires anitrack.thirdparties.common;
 
-    requires easyfxml;
+    requires moe.tristan.easyfxml;
+    requires moe.tristan.easyfxml.fxkit;
 
     requires spring.boot;
     requires spring.boot.autoconfigure;

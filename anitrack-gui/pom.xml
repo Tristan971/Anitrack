@@ -35,6 +35,11 @@
         </dependency>
         <dependency>
             <groupId>moe.tristan</groupId>
+            <artifactId>easyfxml-fxkit</artifactId>
+            <version>${easyfxml.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>moe.tristan</groupId>
             <artifactId>easyfxml-junit</artifactId>
             <version>${easyfxml.version}</version>
             <scope>test</scope>
