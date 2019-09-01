@@ -19,7 +19,7 @@ import javafx.scene.layout.Pane;
 
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
-import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
+import moe.anitrack.thirdparties.common.model.persistence.AuthenticationField;
 import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
 import moe.tristan.easyfxml.EasyFxml;
 import moe.tristan.easyfxml.junit.FxNodeTest;

@@ -1,22 +1,20 @@
 package moe.anitrack.persistence;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Converter
-public class JacksonMapToDatabaseConverter implements AttributeConverter<Map<String, String>, String> {
+import moe.anitrack.thirdparties.common.model.authentication.AuthenticationResult;
+
+public class AuthenticationResultConverter implements AttributeConverter<AuthenticationResult, String> {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     @Override
-    public String convertToDatabaseColumn(Map<String, String> attribute) {
+    public String convertToDatabaseColumn(AuthenticationResult attribute) {
         try {
             return OBJECT_MAPPER.writeValueAsString(attribute);
         } catch (JsonProcessingException e) {
@@ -25,10 +23,9 @@ public class JacksonMapToDatabaseConverter implements AttributeConverter<Map<Str
     }
 
     @Override
-    public Map<String, String> convertToEntityAttribute(String dbData) {
+    public AuthenticationResult convertToEntityAttribute(String dbData) {
         try {
-            return OBJECT_MAPPER.readValue(dbData, new TypeReference<Map<String, String>>() {
-            });
+            return OBJECT_MAPPER.readValue(dbData, AuthenticationResult.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

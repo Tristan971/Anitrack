@@ -41,7 +41,6 @@
         <module>anitrack-module-parent</module>
 
         <!-- Proper modules -->
-        <module>anitrack-base</module>
         <module>anitrack-core</module>
         <module>anitrack-gui</module>
         <module>anitrack-persistence</module>

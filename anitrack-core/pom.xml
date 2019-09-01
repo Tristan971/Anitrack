@@ -18,10 +18,6 @@
     <dependencies>
         <dependency>
             <groupId>moe.anitrack</groupId>
-            <artifactId>anitrack-base</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>moe.anitrack</groupId>
             <artifactId>anitrack-persistence</artifactId>
         </dependency>
         <dependency>

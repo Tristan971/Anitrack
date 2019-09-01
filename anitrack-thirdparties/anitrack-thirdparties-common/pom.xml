@@ -13,15 +13,6 @@
     <name>Anitrack Thirdparties Common Infrastructure</name>
     <artifactId>anitrack-thirdparties-common</artifactId>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -30,10 +21,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>moe.anitrack</groupId>
-            <artifactId>anitrack-base</artifactId>
         </dependency>
     </dependencies>
 

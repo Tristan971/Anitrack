@@ -17,7 +17,7 @@ import moe.anitrack.gui.view.views.authentication.AuthenticationFormController;
 import moe.anitrack.gui.view.views.providerselection.provider.ProviderPanelComponent;
 import moe.anitrack.gui.view.views.providerselection.provider.ProviderPanelController;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
-import moe.anitrack.thirdparties.common.model.authentication.AuthenticationResult;
+import moe.anitrack.thirdparties.common.model.persistence.AuthenticationResult;
 import moe.tristan.easyfxml.EasyFxml;
 import moe.tristan.easyfxml.api.FxmlController;
 import moe.tristan.easyfxml.model.exception.ExceptionHandler;
@@ -84,7 +84,7 @@ public class ProviderSelectionController implements FxmlController {
             formController.setFormFields(service.getAuthenticationService().getAuthenticationFields());
             formController.setOwnStage(formStage);
             formController.setSubmit(values -> {
-                final AuthenticationResult authResult = service.getAuthenticationService().authenticateWith(values);
+                final AuthenticationResult authResult = service.getAuthenticationService().tryAuthenticate(values);
                 eventMulticaster.multicastEvent(new AuthenticatedEvent(this, service, authResult));
             });
             providerPanels.disableProperty().bind(formStage.showingProperty());

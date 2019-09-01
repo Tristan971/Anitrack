@@ -13,7 +13,7 @@ import moe.anitrack.thirdparties.thirdparty.local.model.LocalSimpleMedia;
 import moe.anitrack.thirdparties.thirdparty.local.repository.LocalDbRepository;
 
 @Component
-public class LocalDbService implements ThirdpartyService<MediaInfo> {
+public class LocalDbService implements ThirdpartyService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LocalDbService.class);
 
@@ -34,11 +34,6 @@ public class LocalDbService implements ThirdpartyService<MediaInfo> {
     public void played(MediaInfo mediaInfo) {
         final LocalSimpleMedia saved = localDbRepository.save(new LocalSimpleMedia(mediaInfo.getName(), mediaInfo));
         LOGGER.info("Marked {} as played in local db!", saved);
-    }
-
-    @Override
-    public MediaInfo mapFromAnitrackMediaInfo(MediaInfo anitrackMediaInfo) {
-        return anitrackMediaInfo;
     }
 
     @Override

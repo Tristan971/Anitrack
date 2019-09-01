@@ -1,17 +1,19 @@
 package moe.anitrack.thirdparties.common.model.authentication;
 
-import java.util.Map;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.CLASS;
 
 import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Parameter;
 
-import moe.anitrack.base.util.ValueObjectStyle;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.treatwell.immutables.styles.ValueObjectStyle;
 
 @Immutable
 @ValueObjectStyle
-public abstract class AbstractAuthenticationResult {
+abstract class AbstractAuthenticationResult<T> {
 
     @Parameter
-    public abstract Map<AuthenticationField, String> getAuthenticationData();
+    @JsonTypeInfo(use = CLASS)
+    public abstract T getResult();
 
 }

@@ -9,7 +9,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import moe.anitrack.core.model.events.authentication.AuthenticatedEvent;
-import moe.anitrack.persistence.AuthenticationInfo;
+import moe.anitrack.persistence.AuthenticationCredentialsEntity;
 import moe.anitrack.persistence.AuthenticationInfoRepository;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
 
@@ -37,11 +37,11 @@ public class ThirdpartySelectionService {
 
     @EventListener(AuthenticatedEvent.class)
     public void markAuthenticatedWith(AuthenticatedEvent authenticatedEvent) {
-        AuthenticationInfo authenticationInfo = new AuthenticationInfo();
-        authenticationInfo.setRelatingService(authenticatedEvent.getService().uniqueName());
-        authenticationInfo.setAuthenticationData(authenticatedEvent.getAuthenticationResult().getAuthenticationData());
+        AuthenticationCredentialsEntity authenticationCredentialsEntity = new AuthenticationCredentialsEntity();
+        authenticationCredentialsEntity.setService(authenticatedEvent.getService().uniqueName());
+        authenticationCredentialsEntity.setAuthenticationData(authenticatedEvent.getAuthenticationResult());
         currentService.set(authenticatedEvent.getService());
-        authenticationInfoRepository.save(authenticationInfo);
+        authenticationInfoRepository.save(authenticationCredentialsEntity);
     }
 
 }

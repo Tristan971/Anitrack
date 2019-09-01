@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.2.RELEASE</version>
+        <version>2.1.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -29,10 +29,12 @@
         <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
 
         <openjfx.version>11.0.1</openjfx.version>
-        <easyfxml.version>3.2.0</easyfxml.version>
-        <testfx.version>4.0.15-alpha</testfx.version>
+        <easyfxml.version>3.3.0</easyfxml.version>
 
-        <immutables.version>2.7.4</immutables.version>
+        <immutables.version>2.7.5</immutables.version>
+        <immutables-styles.version>2.1.0</immutables-styles.version>
+        <vavr.version>0.10.2</vavr.version>
+
         <javassist.version>3.24.1-GA</javassist.version>
 
         <awaitility.version>3.1.6</awaitility.version>
@@ -51,7 +53,7 @@
                         <dependency>
                             <groupId>org.immutables</groupId>
                             <artifactId>value</artifactId>
-                            <version>2.7.4</version>
+                            <version>${immutables.version}</version>
                         </dependency>
                     </annotationProcessorPaths>
                 </configuration>
@@ -128,13 +130,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.1.2.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -156,6 +151,16 @@
             <groupId>org.immutables</groupId>
             <artifactId>value</artifactId>
             <version>${immutables.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.treatwell</groupId>
+            <artifactId>immutables-styles</artifactId>
+            <version>${immutables-styles.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>${vavr.version}</version>
         </dependency>
         <dependency>
             <groupId>org.javassist</groupId>

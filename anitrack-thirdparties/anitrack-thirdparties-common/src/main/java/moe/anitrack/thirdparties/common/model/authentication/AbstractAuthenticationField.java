@@ -1,36 +1,21 @@
 package moe.anitrack.thirdparties.common.model.authentication;
 
-import java.util.Optional;
-import java.util.function.Predicate;
-
 import org.immutables.value.Value.Default;
 import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Parameter;
 
-import moe.anitrack.base.util.ValueObjectStyle;
+import com.treatwell.immutables.styles.ValueObjectStyle;
 
 @Immutable
 @ValueObjectStyle
-public abstract class AbstractAuthenticationField {
+abstract class AbstractAuthenticationField {
 
-    /**
-     * @return The name of the field that the user will see
-     */
     @Parameter
-    public abstract String getFieldName();
+    public abstract String getName();
 
-    /**
-     * @return Whether to "hide" typed value (typical usage of dots in password fields)
-     */
-    @Parameter
     @Default
-    public boolean isPasswordLike() {
-        return false;
+    public boolean isSecret() {
+        return true;
     }
-
-    /**
-     * @return An optional validator for pre-validation of the entered value
-     */
-    public abstract Optional<Predicate<String>> getValidator();
 
 }

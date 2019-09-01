@@ -12,7 +12,7 @@ import moe.anitrack.thirdparties.common.model.presentation.ImmutableThirdpartySe
 import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
 
 @Component
-public class KitsuService implements ThirdpartyService<MediaInfo> {
+public class KitsuService implements ThirdpartyService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KitsuService.class);
 
@@ -31,11 +31,6 @@ public class KitsuService implements ThirdpartyService<MediaInfo> {
     @Override
     public void played(MediaInfo mediaInfo) {
         LOGGER.info("Dispatching played media query to Kitsu: {}", mediaInfo);
-    }
-
-    @Override
-    public MediaInfo mapFromAnitrackMediaInfo(MediaInfo anitrackMediaInfo) {
-        return anitrackMediaInfo;
     }
 
     @Override

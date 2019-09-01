@@ -1,5 +1,7 @@
 package moe.anitrack.thirdparties.thirdparty.kitsu;
 
+import static io.vavr.API.unchecked;
+import static java.lang.String.format;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
@@ -7,16 +9,14 @@ import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -25,19 +25,12 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import moe.anitrack.base.util.form.FormEmailValidator;
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
 import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
-import moe.anitrack.thirdparties.common.model.authentication.AuthenticationResult;
-import moe.anitrack.thirdparties.thirdparty.kitsu.objects.authentication.ImmutableOauthPasswordAuthenticationResponse;
 import moe.anitrack.thirdparties.thirdparty.kitsu.objects.authentication.OauthPasswordAuthenticationResponse;
 
 @Component
-public class KitsuAuthenticationService implements ThirdpartyAuthenticationService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(KitsuAuthenticationService.class);
+public class KitsuAuthenticationService implements ThirdpartyAuthenticationService<OauthPasswordAuthenticationResponse> {
 
     private static final String OAUTH_ENDPOINT = "https://kitsu.io/api/oauth/token";
     private static final String OAUTH_BODY_TEMPLATE = "grant_type=password&username=%s&password=%s";
@@ -45,20 +38,19 @@ public class KitsuAuthenticationService implements ThirdpartyAuthenticationServi
     private static final String PASSWORD_FIELD_NAME = "Password";
 
     private final RestTemplate restTemplate;
-    private final ObjectMapper objectMapper;
-    private final AtomicReference<OauthPasswordAuthenticationResponse> authentication;
 
-    private final AuthenticationField emailField;
-    private final AuthenticationField passwordField;
+    private final AuthenticationField emailField = AuthenticationField.builder().name(EMAIL_FIELD_NAME).build();
+    private final AuthenticationField passwordField = AuthenticationField.of(PASSWORD_FIELD_NAME);
+    private final AtomicReference<OauthPasswordAuthenticationResponse> authentication = new AtomicReference<>();
 
     @Autowired
-    public KitsuAuthenticationService(RestTemplate restTemplate, ObjectMapper objectMapper, FormEmailValidator emailValidator) {
+    public KitsuAuthenticationService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.objectMapper = objectMapper;
-        this.authentication = new AtomicReference<>();
+    }
 
-        this.emailField = AuthenticationField.builder().fieldName(EMAIL_FIELD_NAME).validator(emailValidator).build();
-        this.passwordField = AuthenticationField.of(PASSWORD_FIELD_NAME, true);
+    @Override
+    public String getName() {
+        return "kitsu";
     }
 
     @Override
@@ -67,40 +59,42 @@ public class KitsuAuthenticationService implements ThirdpartyAuthenticationServi
     }
 
     @Override
-    public AuthenticationResult authenticateWith(Map<AuthenticationField, String> authenticationValues) {
-        try {
-            final String email = authenticationValues.get(emailField);
-            final String password = authenticationValues.get(passwordField);
-            authenticateWith(email, password);
-            return AuthenticationResult.of(authenticationValues);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public CompletableFuture<OauthPasswordAuthenticationResponse> tryAuthenticate(Map<AuthenticationField, String> submittedValues) {
+        return CompletableFuture.supplyAsync(() -> {
+            final String email = submittedValues.get(emailField);
+            final String password = submittedValues.get(passwordField);
+            final OauthPasswordAuthenticationResponse result = unchecked(() -> authenticateWith(email, password)).get();
+            authentication.set(result);
+            return result;
+        });
     }
 
-    public void authenticateWith(final String username, final String password) throws IOException {
-        final ResponseEntity<String> responseEntity = restTemplate.exchange(
+    @Override
+    public void onFoundSavedCredentials(OauthPasswordAuthenticationResponse savedCredentials) {
+        authentication.set(savedCredentials);
+    }
+
+    public Optional<OauthPasswordAuthenticationResponse> getAuthentication() {
+        return Optional.ofNullable(authentication.get());
+    }
+
+    private OauthPasswordAuthenticationResponse authenticateWith(final String username, final String password) {
+        final ResponseEntity<OauthPasswordAuthenticationResponse> responseEntity = restTemplate.exchange(
                 buildAuthRequestEntity(username, password),
-                String.class
+                OauthPasswordAuthenticationResponse.class
         );
 
-        final String responseBody = responseEntity.getBody();
-
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
-            LOGGER.debug("Authentication Response : {}", responseBody);
-            final OauthPasswordAuthenticationResponse authenticationResponse = objectMapper.readValue(
-                    responseBody,
-                    ImmutableOauthPasswordAuthenticationResponse.class
-            );
-            authentication.set(authenticationResponse);
+            return responseEntity.getBody();
         } else {
-            throw new RuntimeException("Could not authenticate!\n " + responseBody);
+            String errFmt = "Unexpected auth response status %s";
+            throw new IllegalStateException(format(errFmt, responseEntity.getStatusCode()));
         }
     }
 
     private RequestEntity<String> buildAuthRequestEntity(final String username, final String password) {
 
-        final String body = String.format(
+        final String body = format(
                 OAUTH_BODY_TEMPLATE,
                 URLEncoder.encode(username, UTF_8),
                 URLEncoder.encode(password, UTF_8)
@@ -116,10 +110,6 @@ public class KitsuAuthenticationService implements ThirdpartyAuthenticationServi
                 POST,
                 URI.create(OAUTH_ENDPOINT)
         );
-    }
-
-    public Optional<OauthPasswordAuthenticationResponse> getAuthentication() {
-        return Optional.ofNullable(authentication.get());
     }
 
 }

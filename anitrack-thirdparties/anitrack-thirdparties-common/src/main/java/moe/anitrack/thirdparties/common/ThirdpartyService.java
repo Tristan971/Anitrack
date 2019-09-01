@@ -3,7 +3,7 @@ package moe.anitrack.thirdparties.common;
 import moe.anitrack.thirdparties.common.model.media.MediaInfo;
 import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
 
-public interface ThirdpartyService<T> {
+public interface ThirdpartyService {
 
     /**
      * @return unique name used to reference the service relating to authentication persistence.
@@ -12,9 +12,7 @@ public interface ThirdpartyService<T> {
      */
     String uniqueName();
 
-    void played(final T mediaInfo);
-
-    T mapFromAnitrackMediaInfo(final MediaInfo anitrackMediaInfo);
+    void played(final MediaInfo mediaInfo);
 
     ThirdpartyAuthenticationService getAuthenticationService();
 

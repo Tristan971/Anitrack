@@ -47,9 +47,9 @@ public class AuthenticationFormFieldController implements FxmlController {
 
     private void displayField() {
         final AuthenticationField field = fieldProperty.getValue();
-        fieldName.setText(field.getFieldName());
+        fieldName.setText(field.getName());
 
-        TextField fieldInput = field.isPasswordLike() ? new PasswordField() : new TextField();
+        TextField fieldInput = field.isSecret() ? new PasswordField() : new TextField();
         fieldInput.textProperty().addListener((o, prev, cur) -> fieldListener.accept(cur));
         fieldBox.getChildren().setAll(fieldInput);
     }

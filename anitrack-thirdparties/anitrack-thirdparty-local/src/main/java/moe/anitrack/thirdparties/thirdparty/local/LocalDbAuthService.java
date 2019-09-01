@@ -3,15 +3,20 @@ package moe.anitrack.thirdparties.thirdparty.local;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 import org.springframework.stereotype.Component;
 
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
 import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
-import moe.anitrack.thirdparties.common.model.authentication.AuthenticationResult;
 
 @Component
-public class LocalDbAuthService implements ThirdpartyAuthenticationService {
+public class LocalDbAuthService implements ThirdpartyAuthenticationService<Void> {
+
+    @Override
+    public String getName() {
+        return "local";
+    }
 
     @Override
     public List<AuthenticationField> getAuthenticationFields() {
@@ -19,8 +24,12 @@ public class LocalDbAuthService implements ThirdpartyAuthenticationService {
     }
 
     @Override
-    public AuthenticationResult authenticateWith(Map<AuthenticationField, String> authenticationValues) {
-        return AuthenticationResult.of(authenticationValues);
+    public CompletableFuture<Void> tryAuthenticate(Map<AuthenticationField, String> submittedValues) {
+        return CompletableFuture.completedFuture(null);
+    }
+
+    @Override
+    public void onFoundSavedCredentials(Void savedCredentials) {
     }
 
 }

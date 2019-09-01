@@ -15,11 +15,6 @@
         <dependencies>
             <dependency>
                 <groupId>moe.anitrack</groupId>
-                <artifactId>anitrack-base</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>moe.anitrack</groupId>
                 <artifactId>anitrack-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
