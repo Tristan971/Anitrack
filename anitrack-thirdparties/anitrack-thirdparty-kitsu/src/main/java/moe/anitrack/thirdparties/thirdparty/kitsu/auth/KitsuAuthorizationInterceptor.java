@@ -1,4 +1,4 @@
-package moe.anitrack.thirdparties.thirdparty.kitsu;
+package moe.anitrack.thirdparties.thirdparty.kitsu.auth;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 

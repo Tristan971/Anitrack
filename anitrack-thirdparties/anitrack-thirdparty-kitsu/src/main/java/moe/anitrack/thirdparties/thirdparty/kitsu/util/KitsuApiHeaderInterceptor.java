@@ -1,4 +1,4 @@
-package moe.anitrack.thirdparties.thirdparty.kitsu;
+package moe.anitrack.thirdparties.thirdparty.kitsu.util;
 
 import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;

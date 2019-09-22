@@ -15,5 +15,4 @@ open module anitrack.thirdparty.local {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires slf4j.api;
-
 }

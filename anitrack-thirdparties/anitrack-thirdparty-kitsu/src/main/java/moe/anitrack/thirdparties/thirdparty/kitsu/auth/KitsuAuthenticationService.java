@@ -1,4 +1,4 @@
-package moe.anitrack.thirdparties.thirdparty.kitsu;
+package moe.anitrack.thirdparties.thirdparty.kitsu.auth;
 
 import static io.vavr.API.unchecked;
 import static java.lang.String.format;
@@ -70,7 +70,7 @@ public class KitsuAuthenticationService implements ThirdpartyAuthenticationServi
     }
 
     @Override
-    public void onFoundSavedCredentials(OauthPasswordAuthenticationResponse savedCredentials) {
+    public void authenticateWithSavedCredentials(OauthPasswordAuthenticationResponse savedCredentials) {
         authentication.set(savedCredentials);
     }
 

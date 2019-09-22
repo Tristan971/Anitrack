@@ -11,7 +11,7 @@ import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
 import moe.anitrack.thirdparties.common.model.authentication.AuthenticationField;
 
 @Component
-public class LocalDbAuthService implements ThirdpartyAuthenticationService<Void> {
+public class LocalDatabaseAuthenticationService implements ThirdpartyAuthenticationService<Void> {
 
     @Override
     public String getName() {
@@ -29,7 +29,7 @@ public class LocalDbAuthService implements ThirdpartyAuthenticationService<Void>
     }
 
     @Override
-    public void onFoundSavedCredentials(Void savedCredentials) {
+    public void authenticateWithSavedCredentials(Void savedCredentials) {
     }
 
 }

@@ -3,32 +3,32 @@ package moe.anitrack.thirdparties.thirdparty.local.model;
 import java.util.Objects;
 
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import moe.anitrack.thirdparties.common.model.media.ImmutableMediaInfo;
 import moe.anitrack.thirdparties.common.model.media.MediaInfo;
-import moe.anitrack.thirdparties.thirdparty.local.repository.MediaInfoConverter;
 
 @Entity
 @Table(name = "media_known")
-public class LocalSimpleMedia {
+public class LocalMediaEntity {
 
     @Id
     @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @Convert(converter = MediaInfoConverter.class)
     private ImmutableMediaInfo relatedInfo;
 
-    public LocalSimpleMedia() {
+    private int playCount;
+
+    public LocalMediaEntity() {
     }
 
-    public LocalSimpleMedia(String name, MediaInfo relatedInfo) {
+    public LocalMediaEntity(String name, MediaInfo relatedInfo, int playCount) {
         this.name = name;
         this.relatedInfo = ImmutableMediaInfo.copyOf(relatedInfo);
+        this.playCount = playCount;
     }
 
     public String getName() {
@@ -47,30 +47,33 @@ public class LocalSimpleMedia {
         this.relatedInfo = ImmutableMediaInfo.copyOf(relatedInfo);
     }
 
+    public void setRelatedInfo(ImmutableMediaInfo relatedInfo) {
+        this.relatedInfo = relatedInfo;
+    }
+
+    public int getPlayCount() {
+        return playCount;
+    }
+
+    public void setPlayCount(int playCount) {
+        this.playCount = playCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof LocalMediaEntity)) {
             return false;
         }
-        LocalSimpleMedia that = (LocalSimpleMedia) o;
-        return Objects.equals(name, that.name) &&
-               Objects.equals(relatedInfo, that.relatedInfo);
+        LocalMediaEntity that = (LocalMediaEntity) o;
+        return getName().equals(that.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, relatedInfo);
-    }
-
-    @Override
-    public String toString() {
-        return "LocalSimpleMedia{" +
-               "name='" + name + '\'' +
-               ", relatedInfo=" + relatedInfo +
-               '}';
+        return Objects.hash(name);
     }
 
 }

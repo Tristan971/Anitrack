@@ -7,7 +7,7 @@
         <groupId>moe.anitrack</groupId>
         <artifactId>anitrack-module-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../anitrack-module-parent</relativePath>
+        <relativePath>../anitrack-module-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>anitrack-persistence</artifactId>

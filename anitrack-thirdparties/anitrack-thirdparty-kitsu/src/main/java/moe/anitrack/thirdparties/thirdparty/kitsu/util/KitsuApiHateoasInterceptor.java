@@ -1,4 +1,4 @@
-package moe.anitrack.thirdparties.thirdparty.kitsu;
+package moe.anitrack.thirdparties.thirdparty.kitsu.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

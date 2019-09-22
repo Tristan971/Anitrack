@@ -9,6 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.client.RestTemplate;
 
+import moe.anitrack.thirdparties.thirdparty.kitsu.auth.KitsuAuthorizationInterceptor;
+import moe.anitrack.thirdparties.thirdparty.kitsu.util.KitsuApiHateoasInterceptor;
+import moe.anitrack.thirdparties.thirdparty.kitsu.util.KitsuApiHeaderInterceptor;
+
 @Configuration
 @PropertySource("classpath:kitsu.properties")
 @ComponentScan("moe.anitrack.thirdparties.thirdparty.kitsu")

@@ -15,6 +15,6 @@ public interface ThirdpartyAuthenticationService<T> {
 
     CompletableFuture<T> tryAuthenticate(final Map<AuthenticationField, String> submittedValues);
 
-    void onFoundSavedCredentials(T savedCredentials);
+    void authenticateWithSavedCredentials(T savedCredentials);
 
 }

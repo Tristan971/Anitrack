@@ -1,9 +1,11 @@
 open module anitrack.thirdparty.kitsu {
 
     exports moe.anitrack.thirdparties.thirdparty.kitsu;
+    exports moe.anitrack.thirdparties.thirdparty.kitsu.auth;
     exports moe.anitrack.thirdparties.thirdparty.kitsu.objects.media;
     exports moe.anitrack.thirdparties.thirdparty.kitsu.objects.authentication;
     exports moe.anitrack.thirdparties.thirdparty.kitsu.objects.media.common;
+    exports moe.anitrack.thirdparties.thirdparty.kitsu.util;
 
     requires anitrack.thirdparties.common;
 

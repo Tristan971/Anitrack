@@ -1,50 +1,41 @@
 package moe.anitrack.thirdparties.thirdparty.kitsu;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import moe.anitrack.thirdparties.common.ThirdpartyAuthenticationService;
 import moe.anitrack.thirdparties.common.ThirdpartyService;
-import moe.anitrack.thirdparties.common.model.media.MediaInfo;
-import moe.anitrack.thirdparties.common.model.presentation.ImmutableThirdpartyServiceInfo;
-import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyServiceInfo;
+import moe.anitrack.thirdparties.common.ThirdpartyTracker;
+import moe.anitrack.thirdparties.common.model.presentation.ThirdpartyInfo;
+import moe.anitrack.thirdparties.thirdparty.kitsu.auth.KitsuAuthenticationService;
 
 @Component
 public class KitsuService implements ThirdpartyService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(KitsuService.class);
-
+    private final KitsuTracker kitsuTracker;
     private final KitsuAuthenticationService kitsuAuthenticationService;
 
-    @Autowired
-    public KitsuService(KitsuAuthenticationService kitsuAuthenticationService) {
+    public KitsuService(KitsuTracker kitsuTracker, KitsuAuthenticationService kitsuAuthenticationService) {
+        this.kitsuTracker = kitsuTracker;
         this.kitsuAuthenticationService = kitsuAuthenticationService;
     }
 
     @Override
-    public String uniqueName() {
-        return "kitsu";
+    public ThirdpartyInfo getInfo() {
+        return ThirdpartyInfo
+                .builder()
+                .name("Kitsu")
+                .logo(getClass().getClassLoader().getResource("kitsu-logo.jpg"))
+                .build();
     }
 
     @Override
-    public void played(MediaInfo mediaInfo) {
-        LOGGER.info("Dispatching played media query to Kitsu: {}", mediaInfo);
+    public ThirdpartyTracker getTracker() {
+        return kitsuTracker;
     }
 
     @Override
     public ThirdpartyAuthenticationService getAuthenticationService() {
         return kitsuAuthenticationService;
-    }
-
-    @Override
-    public ThirdpartyServiceInfo getChoiceInfo() {
-        return ImmutableThirdpartyServiceInfo
-                .builder()
-                .name("Kitsu")
-                .logoUrl(getClass().getClassLoader().getResource("kitsu-logo.jpg"))
-                .build();
     }
 
 }
