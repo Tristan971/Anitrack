@@ -35,7 +35,7 @@
         <immutables.version>2.7.4</immutables.version>
         <javassist.version>3.24.1-GA</javassist.version>
 
-        <awaitility.version>3.1.6</awaitility.version>
+        <awaitility.version>4.0.3</awaitility.version>
         <reflections.version>0.9.11</reflections.version>
         <junit-dep.version>4.10</junit-dep.version>
     </properties>
